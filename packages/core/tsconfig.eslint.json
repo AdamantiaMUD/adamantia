@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "scripts/**/*",
+        "src/**/*",
+        "src/**/*.json",
+        "test/**/*",
+        "test/.eslintrc.cjs",
+        ".eslintrc.cjs",
+        "jest.config.cjs"
+    ]
+}
