@@ -1,32 +1,28 @@
 /* eslint-disable import/unambiguous, import/no-commonjs */
 
 module.exports = {
-    'extends': [
+    extends: [
         '@chimericdream',
         '@chimericdream/import',
         '@chimericdream/jest',
         '@chimericdream/typescript',
     ],
-    'parser': '@typescript-eslint/parser',
-    'parserOptions': {
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
         ecmaVersion: 2020,
         extraFileExtensions: ['.cjs', '.ts'],
         project: './tsconfig.eslint.json',
         sourceType: 'module',
     },
-    'env': {
+    env: {
         browser: false,
         es6: true,
         node: true,
     },
-    'plugins': ['prettier'],
-    'settings': {
+    plugins: ['prettier'],
+    settings: {
         'import/parsers': {
-            '@typescript-eslint/parser': [
-                '.ts',
-                '.tsx',
-                '.d.ts',
-            ],
+            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
         },
         'import/resolver': {
             typescript: {
@@ -35,8 +31,9 @@ module.exports = {
             },
         },
     },
-    'ignorePatterns': ['**/*.json', '**/motd', '**/*.yml', '**/*.md', '**/*.txt'],
-    'rules': {
+
+    ignorePatterns: ['**/*.json', '**/motd', '**/*.yml', '**/*.md', '**/*.txt'],
+    rules: {
         'max-params': ['warn', 8],
 
         '@typescript-eslint/consistent-type-imports': 'off',

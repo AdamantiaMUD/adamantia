@@ -1,9 +1,9 @@
-const base = require('../.eslintrc.cjs');
+const base = require('../../.eslintrc.cjs');
 
 module.exports = {
     ...base,
     root: true,
-    'parserOptions': {
+    parserOptions: {
         project: './tsconfig.eslint.json',
     },
 };

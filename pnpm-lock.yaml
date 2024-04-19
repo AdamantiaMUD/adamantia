@@ -57,7 +57,7 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
 
-  core:
+  packages/core:
     dependencies:
       bcryptjs:
         specifier: 2.4.3
@@ -166,7 +166,7 @@ importers:
         specifier: 4.15.0
         version: 4.15.0
 
-  demo:
+  packages/demo:
     dependencies:
       '@adamantiamud/core':
         specifier: workspace:*
