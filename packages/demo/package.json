@@ -1,0 +1,38 @@
+{
+    "name": "@adamantiamud/demo",
+    "version": "0.0.1-alpha.1",
+    "description": "Sample MUD to demonstrate the basic concepts of the AdamantiaMUD game engine",
+    "author": "Bill Parrott (https://chimericdream.com)",
+    "license": "MIT",
+    "repository": "github:adamantiamud/demo",
+    "bugs": "https://github.com/adamantiamud/demo/issues",
+    "type": "module",
+    "engines": {
+        "node": ">=20"
+    },
+    "packageManager": "pnpm@9.0.2",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rimraf build",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "lint:quiet": "eslint --quiet",
+        "postbuild": "node scripts/copy-assets.cjs && copyfiles data/**/*.json build",
+        "postlint:fix": "prettier --write src",
+        "prebuild": "pnpm run clean",
+        "prestart": "pnpm run build",
+        "start": "node ./build/server.js",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "pnpm run type-check -- --watch"
+    },
+    "main": "build/server.js",
+    "dependencies": {
+        "@adamantiamud/core": "workspace:*",
+        "commander": "12.0.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "11.0.4",
+        "copyfiles": "2.4.1",
+        "fs-extra": "11.2.0"
+    }
+}

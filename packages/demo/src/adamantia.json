@@ -1,0 +1,14 @@
+{
+    "bundles": ["adamantia.character-attributes", "character-classes"],
+    "logfile": "server.log",
+    "players": {
+        "startingRoom": "dragonshade:r0001"
+    },
+    "ports": {
+        "telnet": 4000
+    },
+    "paths": {
+        "data": "[ROOT]/../data",
+        "bundles": "[ROOT]/bundles"
+    }
+}

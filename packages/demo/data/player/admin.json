@@ -1,0 +1,12 @@
+{
+    "entityReference": null,
+    "metadata": {},
+    "behaviors": {},
+    "attributes": {},
+    "level": 1,
+    "name": "Admin",
+    "room": "dragonshade:r0001",
+    "experience": 0,
+    "prompt": "> ",
+    "role": 2
+}
