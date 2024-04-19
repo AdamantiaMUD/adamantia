@@ -1,9 +1,6 @@
-/* eslint-disable import/no-namespace */
 import type { TransformableInfo } from 'logform';
 import winston, { type Logger as WinstonLogger } from 'winston';
-import type * as Transport from 'winston-transport';
-
-/* eslint-enable import/no-namespace */
+import type Transport from 'winston-transport';
 
 import { cast, hasValue } from '../util/functions.js';
 

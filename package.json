@@ -4,6 +4,13 @@
         "node": ">=20"
     },
     "packageManager": "pnpm@9.0.2",
+    "scripts": {
+        "build": "pnpm -r build",
+        "clean": "pnpm -r clean",
+        "lint": "pnpm -r --no-bail lint",
+        "test": "pnpm -r --no-bail test",
+        "type-check": "pnpm -r type-check"
+    },
     "devDependencies": {
         "@chimericdream/eslint-config": "7.0.3",
         "@chimericdream/eslint-config-import": "1.1.2",
