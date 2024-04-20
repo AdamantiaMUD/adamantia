@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "jsx": "react",
+        "lib": ["dom", "esnext"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "noImplicitAny": true,
+        "paths": {
+            "~/*": ["src/app/*"],
+            "$/*": ["__tests__/*"]
+        },
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "target": "esnext",
+        "typeRoots": ["node_modules/@types"]
+    },
+    "include": [
+        "src/**/*",
+        ".eslintrc.cjs",
+        "webpack.config.ts"
+    ]
+}
