@@ -4,8 +4,10 @@
     "description": "Sample MUD to demonstrate the basic concepts of the AdamantiaMUD game engine",
     "author": "Bill Parrott (https://chimericdream.com)",
     "license": "MIT",
-    "repository": "github:adamantiamud/demo",
-    "bugs": "https://github.com/adamantiamud/demo/issues",
+    "repository": "github:adamantiamud/adamantia",
+    "bugs": "https://github.com/AdamantiaMUD/adamantia/issues",
+    "keywords": [],
+    "homepage": "https://github.com/AdamantiaMUD/adamantia/tree/main/packages/demo#readme",
     "type": "module",
     "engines": {
         "node": ">=20"
@@ -14,9 +16,9 @@
     "scripts": {
         "build": "tsc",
         "clean": "rimraf build",
-        "lint": "eslint",
-        "lint:fix": "eslint --fix",
-        "lint:quiet": "eslint --quiet",
+        "lint": "eslint src/**/*",
+        "lint:fix": "eslint src/**/* --fix",
+        "lint:quiet": "eslint src/**/* --quiet",
         "postbuild": "node scripts/copy-assets.cjs && copyfiles data/**/*.json build",
         "postlint:fix": "prettier --write src",
         "prebuild": "pnpm run clean",
