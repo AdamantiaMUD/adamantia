@@ -24,6 +24,7 @@ export const RoomLink: FC<ComponentProps> = (props: ComponentProps) => {
         const toX = toRoom.coords.x;
         const toY = toRoom.coords.y;
 
+        /* eslint-disable @typescript-eslint/no-magic-numbers */
         switch (node.fromSide) {
             case ExitDirection.NORTH:
                 return [
@@ -61,6 +62,7 @@ export const RoomLink: FC<ComponentProps> = (props: ComponentProps) => {
                 /* eslint-disable-next-line array-element-newline,array-bracket-newline */
                 return [-1, -1, -1, -1];
         }
+        /* eslint-enable @typescript-eslint/no-magic-numbers */
     }, [fromRoom, node, toRoom]);
 
     if (fromRoom.id === toRoom.id) {

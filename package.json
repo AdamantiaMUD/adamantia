@@ -13,10 +13,10 @@
         "type-check": "pnpm -r type-check"
     },
     "devDependencies": {
-        "@chimericdream/eslint-config": "7.0.3",
-        "@chimericdream/eslint-config-import": "1.1.2",
+        "@chimericdream/eslint-config": "7.0.4",
+        "@chimericdream/eslint-config-import": "1.1.3",
         "@chimericdream/eslint-config-jest": "4.1.1",
-        "@chimericdream/eslint-config-typescript": "6.0.0",
+        "@chimericdream/eslint-config-typescript": "6.0.2",
         "@types/jest": "29.5.12",
         "@types/node": "20.12.7",
         "@typescript-eslint/eslint-plugin": "7.6.0",

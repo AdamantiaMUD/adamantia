@@ -50,8 +50,10 @@ export const ControlPanel: FC<ComponentProps> = ({
     const addRoom = useAddRoom();
 
     const add = useCallback(() => {
+        /* eslint-disable @typescript-eslint/no-magic-numbers */
         const x = -1 * (coords.x - 2 * GRID_SIZE);
         const y = -1 * (coords.y - 2 * GRID_SIZE);
+        /* eslint-enable @typescript-eslint/no-magic-numbers */
 
         addRoom({ x, y });
     }, [addRoom, coords]);

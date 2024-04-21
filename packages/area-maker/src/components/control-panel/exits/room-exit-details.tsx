@@ -13,7 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import { createStyles, makeStyles } from '@mui/styles';
 import { produce, type Draft } from 'immer';
-import { type FC, SyntheticEvent, useCallback, useMemo } from 'react';
+import { type FC, type SyntheticEvent, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import useUpdateRoomLink from '~/hooks/use-update-room-link';
@@ -187,7 +187,11 @@ export const RoomExitDetails: FC<ComponentProps> = ({
             <FormControlLabel
                 control={
                     <Checkbox
+                        // @TODO: try to remember what I was thinking here
+                        /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+                        /* @ts-expect-error -- wat */
                         checked={roomExit.oneWay ?? false}
+                        /* eslint-enable @typescript-eslint/no-unsafe-assignment */
                         color="default"
                         inputProps={{ 'aria-label': 'One-way exit' }}
                     />

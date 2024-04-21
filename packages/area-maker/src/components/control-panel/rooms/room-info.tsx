@@ -9,12 +9,10 @@ import {
     type ChangeEvent,
     type FC,
     useCallback,
-    useContext,
     useMemo,
     useState,
 } from 'react';
 import { useRecoilValue } from 'recoil';
-import invariant from 'tiny-invariant';
 
 import RoomExitList from '~/components/control-panel/exits/room-exit-list';
 import DeleteRoomButton from '~/components/control-panel/rooms/delete-room-button';
@@ -30,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             '& > *': {
+                /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
                 marginBottom: theme.spacing(2),
             },
             '& > *:last-child': {

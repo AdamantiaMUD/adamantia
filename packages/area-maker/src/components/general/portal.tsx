@@ -7,7 +7,6 @@ import {
     useEffect,
     useRef,
 } from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { useRecoilBridgeAcrossReactRoots_UNSTABLE } from 'recoil';
 
@@ -16,6 +15,7 @@ const theme = createTheme();
 export const Portal: FC = (props: PWC) => {
     const { children } = props;
     const defaultNode = useRef<HTMLDivElement | null>(null);
+    const root = useRef<ReturnType<typeof createRoot> | null>(null);
     const RecoilBridge = useRecoilBridgeAcrossReactRoots_UNSTABLE();
 
     const renderPortal = useCallback(() => {
@@ -31,21 +31,20 @@ export const Portal: FC = (props: PWC) => {
             document.body.appendChild(defaultNode.current);
         }
 
-        const root = createRoot(defaultNode.current);
-        root.render(
+        root.current = createRoot(defaultNode.current);
+        root.current.render(
             <ThemeProvider theme={theme}>
                 <RecoilBridge>{children}</RecoilBridge>
             </ThemeProvider>
         );
-    }, [children]);
+    }, [children, RecoilBridge]);
 
     useEffect(() => {
         renderPortal();
 
         return (): void => {
-            if (defaultNode.current !== null) {
-                ReactDOM.unmountComponentAtNode(defaultNode.current);
-
+            if (defaultNode.current !== null && root.current !== null) {
+                root.current.unmount();
                 document.body.removeChild(defaultNode.current);
             }
 
@@ -53,7 +52,7 @@ export const Portal: FC = (props: PWC) => {
         };
     }, [renderPortal]);
 
-    return <></>;
+    return null;
 };
 
 export default Portal;

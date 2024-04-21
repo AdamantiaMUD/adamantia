@@ -82,7 +82,7 @@ export const Room: FC<ComponentProps> = (props: ComponentProps) => {
 
     return (
         <>
-            {isDragging && (
+            {isDragging ? (
                 <Rect
                     x={shadowX}
                     y={shadowY}
@@ -92,7 +92,7 @@ export const Room: FC<ComponentProps> = (props: ComponentProps) => {
                     stroke="#999"
                     strokeWidth={1}
                 />
-            )}
+            ) : null}
             <Rect
                 draggable
                 x={node.coords.x}

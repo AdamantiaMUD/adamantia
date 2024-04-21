@@ -15,14 +15,17 @@ export const DeleteRoomButton: FC = () => {
     const removeRoom = useRemoveRoom();
     const selectedId = useRecoilValue(selectedRoomState);
 
-    const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
     const closeDialog = useCallback(
-        () => setDialogOpen(false),
-        [setDialogOpen]
+        () => setIsDialogOpen(false),
+        [setIsDialogOpen]
     );
 
-    const openDialog = useCallback(() => setDialogOpen(true), [setDialogOpen]);
+    const openDialog = useCallback(
+        () => setIsDialogOpen(true),
+        [setIsDialogOpen]
+    );
 
     const handleDelete = useCallback(() => {
         if (selectedId !== '') {

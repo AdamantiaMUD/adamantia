@@ -2,6 +2,7 @@
 import localforage from 'localforage';
 import { type AtomEffect, DefaultValue } from 'recoil';
 
+/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
 type EffectParam<T> = Parameters<AtomEffect<T>>[0];
 
 export const localForageEffect =
