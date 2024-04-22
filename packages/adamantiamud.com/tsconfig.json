@@ -1,19 +1,19 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "allowJs": true,
-        "module": "es2015",
-        "moduleResolution": "node",
-        "target": "esnext",
-        "jsx": "react",
-        "lib": ["dom", "esnext"]
+        "baseUrl": ".",
+        "outDir": "build",
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "noEmit": true,
+
+        "jsx": "react-jsx",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
-    "include": [
-        "./src/**/*"
-    ],
-    "typeRoots": ["node_modules/@types"]
+    "include": ["src"]
 }
