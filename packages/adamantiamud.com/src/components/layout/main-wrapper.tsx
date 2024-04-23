@@ -1,21 +1,23 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import {FC, PropsWithChildren as PWC} from 'react';
-import {useTheme} from 'emotion-theming';
+import { Box } from '@mui/material';
+import type { FC, PropsWithChildren as PWC } from 'react';
 
-import {SiteTheme} from '../../util/site-theme';
+import { siteLayout } from '../../util/site-theme';
 
-export const MainWrapper: FC = (props: PWC<never>) => {
-    const {layout} = useTheme<SiteTheme>();
+export const MainWrapper: FC<PWC> = ({ children, ...restProps }: PWC) => {
+    const { leftNavWidth } = siteLayout;
 
     const css = {
         display: 'grid',
-        gridTemplateColumns: `${layout.leftNavWidth} 1fr`,
+        gridTemplateColumns: `${leftNavWidth} 1fr`,
         height: '100%',
         overflow: 'hidden',
     };
 
-    return (<div css={css} {...props} />);
+    return (
+        <Box sx={css} {...restProps}>
+            {children}
+        </Box>
+    );
 };
 
 export default MainWrapper;

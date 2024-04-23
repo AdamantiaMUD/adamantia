@@ -1,21 +1,18 @@
-import React, {FC} from 'react';
-import {PageRendererProps} from 'gatsby';
+import type { FC } from 'react';
 
-import Layout from '../components/layout';
 import PageTitle from '../components/general/page-title';
-import SEO from '../components/seo';
+import Layout from '../components/layout';
 
-export const IndexPage: FC<PageRendererProps> = ({location}: PageRendererProps) => (
-    <Layout location={location}>
-        <SEO title="Home" />
-        <PageTitle>Home</PageTitle>
+export const IndexPage: FC = () => (
+    <Layout>
         <h3>Node.js-based MUD engine</h3>
         <p>
             Adamantia is a MUD game engine whose goal is to be a simple but
-            powerful way to build whatever MUD you want with special care given to
-            extensibility. The core code strives to be completely unopinionated
-            toward any specific style of game while using the bundle system to build
-            the game you want without having to dig through the engine{'\u0027'}s code.
+            powerful way to build whatever MUD you want with special care given
+            to extensibility. The core code strives to be completely
+            unopinionated toward any specific style of game while using the
+            bundle system to build the game you want without having to dig
+            through the engine{'\u0027'}s code.
         </p>
 
         <h3>Special Features</h3>
@@ -44,7 +41,7 @@ export const IndexPage: FC<PageRendererProps> = ({location}: PageRendererProps) 
         </ul>
 
         <h3>Requirements</h3>
-        <p>Node.js {'\u2265'} v12.0</p>
+        <p>Node.js {'\u2265'} v20</p>
     </Layout>
 );
 

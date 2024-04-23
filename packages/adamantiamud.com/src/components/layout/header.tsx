@@ -1,43 +1,44 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import {CSSProperties, FC} from 'react';
-import {Link} from 'gatsby';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useTheme} from 'emotion-theming';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+    AppBar,
+    Box,
+    IconButton,
+    Toolbar,
+    Typography,
+    useTheme,
+} from '@mui/material';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-import {SiteTheme} from '../../util/site-theme';
+import Icon from '~/components/general/icon';
 
-export interface HeaderProps {
-    siteTitle: string;
-}
-
-const linkProps: CSSProperties = {color: 'white', textDecoration: 'none'};
-
-export const Header: FC<HeaderProps> = ({siteTitle}: HeaderProps) => {
-    const {colors, layout} = useTheme<SiteTheme>();
-
-    const css = {
-        backgroundColor: colors.primary,
-        display: 'grid',
-        gridTemplateColumns: '1fr 6rem',
-        lineHeight: layout.siteNavHeight,
-        padding: '0 1rem',
-    };
+export const Header: FC = () => {
+    const theme = useTheme();
 
     return (
-        <header css={css}>
-            <h1 style={{fontSize: '1.25rem', margin: 0}}>
-                <Link to="/" style={linkProps}>{siteTitle}</Link>
-            </h1>
-            <div style={{textAlign: 'end'}}>
-                <a
-                    href="https://github.com/adamantiamud/adamantia-core"
-                    style={linkProps}
-                >
-                    <FontAwesomeIcon icon={['fab', 'github']} />
-                </a>
-            </div>
-        </header>
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="sticky" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+                <Toolbar>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ flexGrow: 1 }}
+                    >
+                        AdamantiaMUD
+                    </Typography>
+                    <IconButton
+                        component={Link}
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        to="https://github.com/adamantiamud/adamantia-core"
+                    >
+                        <Icon icon={faGithub} />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+        </Box>
     );
 };
 

@@ -1,29 +1,34 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import {FC, PropsWithChildren as PWC} from 'react';
-import {useTheme} from 'emotion-theming';
+import { Box } from '@mui/material';
+import type { FC, PropsWithChildren as PWC } from 'react';
 
-import {SiteTheme} from '../../util/site-theme';
+import { siteLayout } from '../../util/site-theme';
+
 import Footer from './footer';
 
-export const SiteContent: FC = (props: PWC<never>) => {
-    const {layout} = useTheme<SiteTheme>();
-    const {children} = props;
+export const SiteContent: FC<PWC> = ({ children }: PWC) => {
+    const { gridGutter, contentMaxWidth } = siteLayout;
 
     const css = {
         display: 'grid',
-        gridTemplateRows: `1fr ${layout.siteFooterHeight}`,
+        gridTemplateRows: `1fr min-content`,
         overflow: 'auto',
-        padding: `${layout.gridGutter} ${layout.gridGutter} 0 ${layout.gridGutter}`,
+        padding: `${gridGutter} ${gridGutter} 0 ${gridGutter}`,
     };
 
     return (
-        <section css={css}>
-            <main css={{maxWidth: layout.contentMaxWidth}}>
+        <Box sx={css}>
+            <Box
+                component="main"
+                sx={{
+                    maxWidth: contentMaxWidth,
+                    overflow: 'auto',
+                    paddingBlock: '1rem',
+                }}
+            >
                 {children}
-            </main>
+            </Box>
             <Footer />
-        </section>
+        </Box>
     );
 };
 

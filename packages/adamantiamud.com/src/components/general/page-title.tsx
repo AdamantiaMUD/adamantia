@@ -1,11 +1,10 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import {FC, PropsWithChildren as PWC} from 'react';
+import { Typography } from '@mui/material';
+import type { FC, PropsWithChildren as PWC } from 'react';
 
-export const PageTitle: FC = ({children}: PWC<never>) => {
-    const css = {marginTop: 0};
-
-    return (<h1 css={css}>{children}</h1>);
-};
+export const PageTitle: FC<PWC> = ({ children }: PWC) => (
+    <Typography component="h2" variant="h4" gutterBottom>
+        {children}
+    </Typography>
+);
 
 export default PageTitle;

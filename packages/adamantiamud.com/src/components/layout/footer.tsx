@@ -1,22 +1,12 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import {FC, PropsWithChildren as PWC} from 'react';
-import {useTheme} from 'emotion-theming';
+import { Box } from '@mui/material';
+import type { FC } from 'react';
 
-import {SiteTheme} from '../../util/site-theme';
+import { siteLayout } from '../../util/site-theme';
 
-export const Footer: FC = (props: PWC<never>) => {
-    const {layout} = useTheme<SiteTheme>();
-
-    const css = {
-        lineHeight: layout.siteFooterHeight,
-    };
-
-    return (
-        <footer css={css} {...props}>
-            © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-    );
-};
+export const Footer: FC = () => (
+    <Box component="footer" sx={{ paddingBlock: '0.5rem' }}>
+        © {new Date().getFullYear()}
+    </Box>
+);
 
 export default Footer;

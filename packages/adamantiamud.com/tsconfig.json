@@ -1,7 +1,7 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "build",
         "target": "ES2020",
         "useDefineForClassFields": true,
         "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -11,9 +11,13 @@
         /* Bundler mode */
         "moduleResolution": "bundler",
         "noEmit": true,
-
         "jsx": "react-jsx",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+
+        "paths": {
+            "~/*": ["src/*"],
+            "$/*": ["__tests__/*"]
+        }
     },
-    "include": ["src"]
+    "include": ["src"],
+    "references": [{ "path": "./tsconfig.node.json" }]
 }

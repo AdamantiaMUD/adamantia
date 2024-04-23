@@ -1,4 +1,11 @@
-export interface SiteTheme {
+import { createTheme } from '@mui/material/styles';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+export interface OldSiteTheme {
     colors: {
         danger: string;
         info: string;
@@ -17,7 +24,15 @@ export interface SiteTheme {
     };
 }
 
-export const theme: SiteTheme = {
+export interface SiteLayout {
+    contentMaxWidth: string;
+    gridGutter: string;
+    leftNavWidth: string;
+    siteFooterHeight: string;
+    siteNavHeight: string;
+}
+
+export const oldTheme: OldSiteTheme = {
     colors: {
         danger: '#a02a28',
         info: '#009fc8',
@@ -36,4 +51,18 @@ export const theme: SiteTheme = {
     },
 };
 
-export default theme;
+export const siteLayout: SiteLayout = {
+    contentMaxWidth: 'calc(100% - 16rem)',
+    gridGutter: '1rem',
+    leftNavWidth: '16rem',
+    siteFooterHeight: '2rem',
+    siteNavHeight: '3rem',
+};
+
+export const theme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
+
+export default { theme };

@@ -1,13 +1,10 @@
-import React, {FC} from 'react';
-import {PageRendererProps} from 'gatsby';
+import type { FC } from 'react';
 
-import Layout from '../../components/layout';
 import PageTitle from '../../components/general/page-title';
-import SEO from '../../components/seo';
+import Layout from '../../components/layout';
 
-export const OptionalBundlesPage: FC<PageRendererProps> = ({location}: PageRendererProps) => (
-    <Layout location={location}>
-        <SEO title="Optional Bundles" />
+export const OptionalBundlesPage: FC = () => (
+    <Layout>
         <PageTitle>Optional Bundles</PageTitle>
     </Layout>
 );

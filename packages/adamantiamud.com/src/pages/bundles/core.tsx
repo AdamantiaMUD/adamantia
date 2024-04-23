@@ -1,13 +1,10 @@
-import React, {FC} from 'react';
-import {PageRendererProps} from 'gatsby';
+import type { FC } from 'react';
 
-import Layout from '../../components/layout';
 import PageTitle from '../../components/general/page-title';
-import SEO from '../../components/seo';
+import Layout from '../../components/layout';
 
-export const CoreBundlesPage: FC<PageRendererProps> = ({location}: PageRendererProps) => (
-    <Layout location={location}>
-        <SEO title="Core Bundles" />
+export const CoreBundlesPage: FC = () => (
+    <Layout>
         <PageTitle>Core Bundles</PageTitle>
     </Layout>
 );
