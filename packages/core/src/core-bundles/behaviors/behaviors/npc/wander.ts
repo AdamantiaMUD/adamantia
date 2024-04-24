@@ -1,7 +1,7 @@
 import type BehaviorDefinition from '../../../../lib/behaviors/behavior-definition.js';
 import {
-    type UpdateTickPayload,
     UpdateTickEvent,
+    type UpdateTickPayload,
 } from '../../../../lib/common/events/index.js';
 import Logger from '../../../../lib/common/logger.js';
 import { sayAt } from '../../../../lib/communication/broadcast.js';

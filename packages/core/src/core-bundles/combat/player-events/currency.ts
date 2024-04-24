@@ -2,8 +2,8 @@ import Broadcast from '../../../lib/communication/broadcast.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';
 import type MudEventListener from '../../../lib/events/mud-event-listener.js';
 import {
-    type PlayerCurrencyGainedPayload,
     PlayerCurrencyGainedEvent,
+    type PlayerCurrencyGainedPayload,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';
 import { hasValue } from '../../../lib/util/functions.js';

@@ -1,6 +1,6 @@
 import {
-    type CharacterEffectRemovedPayload,
     CharacterEffectRemovedEvent,
+    type CharacterEffectRemovedPayload,
 } from '../../../lib/characters/events/index.js';
 import type PlayerEventListenerDefinition from '../../../lib/events/player-event-listener-definition.js';
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';

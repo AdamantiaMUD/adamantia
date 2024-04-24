@@ -2,8 +2,8 @@ import { line, sayAt } from '../../../lib/communication/broadcast.js';
 import type PlayerEventListenerDefinition from '../../../lib/events/player-event-listener-definition.js';
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';
 import {
-    type PlayerQuestCompletedPayload,
     PlayerQuestCompletedEvent,
+    type PlayerQuestCompletedPayload,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';
 import { hasValue } from '../../../lib/util/functions.js';

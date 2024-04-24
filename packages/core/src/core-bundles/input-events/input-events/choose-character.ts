@@ -12,11 +12,11 @@ import { hasValue } from '../../../lib/util/functions.js';
 import {
     ChangePasswordEvent,
     ChooseCharacterEvent,
+    type ChooseCharacterPayload,
     CommandLoopEvent,
     CreateCharacterEvent,
     DeleteCharacterEvent,
     LoginCompleteEvent,
-    type ChooseCharacterPayload,
 } from '../lib/events/index.js';
 
 /* eslint-disable-next-line id-length */

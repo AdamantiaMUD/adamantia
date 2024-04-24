@@ -5,8 +5,8 @@ import Logger from '../../../lib/common/logger.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';
 import type MudEventListener from '../../../lib/events/mud-event-listener.js';
 import {
-    type GameServerStartupPayload,
     GameServerStartupEvent,
+    type GameServerStartupPayload,
 } from '../../../lib/game-server/events/index.js';
 import type GameStateData from '../../../lib/game-state-data.js';
 import WebsocketStream from '../lib/WebsocketStream';

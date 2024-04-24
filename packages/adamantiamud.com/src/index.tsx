@@ -15,6 +15,7 @@ import SourceDocsPage from '~/pages/source-docs';
 import routes from '~/util/routes';
 import { theme } from '~/util/site-theme';
 
+/* eslint-disable-next-line import/no-unassigned-import */
 import './styles.css';
 
 const container = document.getElementById('root')!;

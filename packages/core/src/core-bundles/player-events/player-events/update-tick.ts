@@ -1,6 +1,6 @@
 import {
-    type UpdateTickPayload,
     UpdateTickEvent,
+    type UpdateTickPayload,
 } from '../../../lib/common/events/index.js';
 import Logger from '../../../lib/common/logger.js';
 import {

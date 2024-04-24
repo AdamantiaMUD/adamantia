@@ -1,7 +1,7 @@
 import type Item from '../../../../lib/equipment/item.js';
 import {
-    PlayerGetItemEvent,
     PlayerDropItemEvent,
+    PlayerGetItemEvent,
     PlayerQuestStartedEvent,
 } from '../../../../lib/players/events/index.js';
 import type Player from '../../../../lib/players/player.js';

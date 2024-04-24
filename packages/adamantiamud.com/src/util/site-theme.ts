@@ -1,9 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
+/* eslint-disable import/no-unassigned-import */
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+
+/* eslint-enable import/no-unassigned-import */
 
 export interface OldSiteTheme {
     colors: {
@@ -64,5 +67,3 @@ export const theme = createTheme({
         mode: 'dark',
     },
 });
-
-export default { theme };

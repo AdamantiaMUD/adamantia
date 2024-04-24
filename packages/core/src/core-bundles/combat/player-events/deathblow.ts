@@ -1,6 +1,6 @@
 import {
-    type CharacterDeathblowPayload,
     CharacterDeathblowEvent,
+    type CharacterDeathblowPayload,
 } from '../../../lib/characters/events/index.js';
 import Broadcast from '../../../lib/communication/broadcast.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';

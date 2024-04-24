@@ -7,9 +7,9 @@ import type GameStateData from '../../../lib/game-state-data.js';
 import { cast } from '../../../lib/util/functions.js';
 import { validateCharacterName } from '../../../lib/util/player.js';
 import {
-    type CreateCharacterPayload,
     CharacterNameCheckEvent,
     CreateCharacterEvent,
+    type CreateCharacterPayload,
 } from '../lib/events/index.js';
 
 /**

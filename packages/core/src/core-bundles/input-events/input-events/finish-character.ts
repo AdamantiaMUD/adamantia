@@ -6,8 +6,8 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import type GameStateData from '../../../lib/game-state-data.js';
 import Player from '../../../lib/players/player.js';
 import {
-    type FinishCharacterPayload,
     FinishCharacterEvent,
+    type FinishCharacterPayload,
     LoginCompleteEvent,
 } from '../lib/events/index.js';
 

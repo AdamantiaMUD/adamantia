@@ -2,8 +2,8 @@ import { progress, sayAt } from '../../../lib/communication/broadcast.js';
 import type PlayerEventListenerDefinition from '../../../lib/events/player-event-listener-definition.js';
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';
 import {
-    type PlayerExperiencePayload,
     PlayerExperienceEvent,
+    type PlayerExperiencePayload,
     PlayerLevelUpEvent,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';

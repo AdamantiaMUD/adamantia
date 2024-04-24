@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { createStyles, makeStyles } from '@mui/styles';
-import { produce, type Draft } from 'immer';
+import { type Draft, produce } from 'immer';
 import {
     type ChangeEvent,
     type FC,

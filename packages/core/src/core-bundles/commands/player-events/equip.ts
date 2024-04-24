@@ -1,6 +1,6 @@
 import {
-    type CharacterEquipItemPayload,
     CharacterEquipItemEvent,
+    type CharacterEquipItemPayload,
 } from '../../../lib/characters/events/index.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';
 import type MudEventListener from '../../../lib/events/mud-event-listener.js';

@@ -1,9 +1,9 @@
 import type Character from '../../../../lib/characters/character.js';
 import {
-    type CharacterEquipItemPayload,
-    type CharacterUnequipItemPayload,
     CharacterEquipItemEvent,
+    type CharacterEquipItemPayload,
     CharacterUnequipItemEvent,
+    type CharacterUnequipItemPayload,
 } from '../../../../lib/characters/events/index.js';
 import type Player from '../../../../lib/players/player.js';
 import { QuestProgressEvent } from '../../../../lib/quests/events/index.js';

@@ -23,15 +23,15 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import type GameStateData from '../../../lib/game-state-data.js';
 import { RoomCommandEvent } from '../../../lib/locations/events/index.js';
 import {
-    type PlayerMovePayload,
     PlayerMoveEvent,
+    type PlayerMovePayload,
 } from '../../../lib/players/events/index.js';
 import PlayerRole from '../../../lib/players/player-role.js';
 import type Player from '../../../lib/players/player.js';
 import { cast, hasValue } from '../../../lib/util/functions.js';
 import {
-    type CommandLoopPayload,
     CommandLoopEvent,
+    type CommandLoopPayload,
 } from '../lib/events/index.js';
 
 const handleChannelError = (

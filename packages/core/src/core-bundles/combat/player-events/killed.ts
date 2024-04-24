@@ -3,8 +3,8 @@ import type MudEventListenerDefinition from '../../../lib/events/mud-event-liste
 import type MudEventListener from '../../../lib/events/mud-event-listener.js';
 import type GameStateData from '../../../lib/game-state-data.js';
 import {
-    type PlayerKilledPayload,
     PlayerKilledEvent,
+    type PlayerKilledPayload,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';
 import { isNpc } from '../../../lib/util/characters.js';

@@ -2,8 +2,8 @@ import type PlayerEventListenerDefinition from '../../../lib/events/player-event
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';
 import type GameStateData from '../../../lib/game-state-data.js';
 import {
-    type PlayerSavePayload,
     PlayerSaveEvent,
+    type PlayerSavePayload,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';
 import { hasValue } from '../../../lib/util/functions.js';

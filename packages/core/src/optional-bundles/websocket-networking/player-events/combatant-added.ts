@@ -1,6 +1,6 @@
 import {
-    type CombatantAddedPayload,
     CombatantAddedEvent,
+    type CombatantAddedPayload,
 } from '../../../lib/combat/events/index.js';
 import type PlayerEventListenerDefinition from '../../../lib/events/player-event-listener-definition.js';
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';

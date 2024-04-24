@@ -11,10 +11,10 @@ import { hasValue } from '../util/functions.js';
 
 import type Effect from './effect.js';
 import {
-    EffectStackAddedEvent,
+    EffectAddedEvent,
     EffectRefreshedEvent,
     EffectRemovedEvent,
-    EffectAddedEvent,
+    EffectStackAddedEvent,
 } from './events/index.js';
 import type SerializedEffect from './serialized-effect.js';
 

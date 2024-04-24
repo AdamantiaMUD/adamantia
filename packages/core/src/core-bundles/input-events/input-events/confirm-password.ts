@@ -4,9 +4,9 @@ import type TransportStream from '../../../lib/communication/transport-stream.js
 import type StreamEventListenerFactory from '../../../lib/events/stream-event-listener-factory.js';
 import type StreamEventListener from '../../../lib/events/stream-event-listener.js';
 import {
-    type ConfirmPasswordPayload,
     ChangePasswordEvent,
     ConfirmPasswordEvent,
+    type ConfirmPasswordPayload,
 } from '../lib/events/index.js';
 
 /**

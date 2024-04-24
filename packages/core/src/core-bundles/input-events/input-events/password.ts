@@ -5,9 +5,9 @@ import type StreamEventListenerFactory from '../../../lib/events/stream-event-li
 import type StreamEventListener from '../../../lib/events/stream-event-listener.js';
 import { hasValue } from '../../../lib/util/functions.js';
 import {
-    type InputPasswordPayload,
     ChooseCharacterEvent,
     InputPasswordEvent,
+    type InputPasswordPayload,
 } from '../lib/events/index.js';
 
 const passwordAttempts: Record<string, number> = {};

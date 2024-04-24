@@ -4,8 +4,8 @@ import type MudEventListenerDefinition from '../../../lib/events/mud-event-liste
 import type { StatefulListenerFactory } from '../../../lib/events/mud-event-listener-factory.js';
 import type MudEventListener from '../../../lib/events/mud-event-listener.js';
 import {
-    type GameServerStartupPayload,
     GameServerStartupEvent,
+    type GameServerStartupPayload,
 } from '../../../lib/game-server/events/index.js';
 import type GameState from '../../../lib/game-state.js';
 import { IntroEvent } from '../../input-events/lib/events/index.js';

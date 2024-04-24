@@ -1,6 +1,6 @@
 import {
-    type CharacterHitPayload,
     CharacterHitEvent,
+    type CharacterHitPayload,
 } from '../../../lib/characters/events/index.js';
 import { sayAt } from '../../../lib/communication/broadcast.js';
 import { ItemHitEvent } from '../../../lib/equipment/events/index.js';

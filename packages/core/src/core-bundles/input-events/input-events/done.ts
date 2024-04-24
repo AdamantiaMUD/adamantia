@@ -7,9 +7,9 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import type GameStateData from '../../../lib/game-state-data.js';
 import { PlayerLoginEvent } from '../../../lib/players/events/index.js';
 import {
-    type LoginCompletePayload,
     CommandLoopEvent,
     LoginCompleteEvent,
+    type LoginCompletePayload,
 } from '../lib/events/index.js';
 
 /**

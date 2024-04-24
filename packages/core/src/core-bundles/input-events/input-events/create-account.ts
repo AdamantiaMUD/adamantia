@@ -6,10 +6,10 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import Account from '../../../lib/players/account.js';
 import { hasValue } from '../../../lib/util/functions.js';
 import {
-    type CreateAccountPayload,
     BeginLoginEvent,
     ChangePasswordEvent,
     CreateAccountEvent,
+    type CreateAccountPayload,
     CreateCharacterEvent,
 } from '../lib/events/index.js';
 

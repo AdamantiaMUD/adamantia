@@ -1,6 +1,6 @@
 import {
-    type CharacterHealedPayload,
     CharacterHealedEvent,
+    type CharacterHealedPayload,
 } from '../../../lib/characters/events/index.js';
 import { sayAt } from '../../../lib/communication/broadcast.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';

@@ -1,15 +1,15 @@
 import type BehaviorDefinition from '../../../../lib/behaviors/behavior-definition.js';
 import {
     CharacterDamagedEvent,
-    CharacterDeathblowEvent,
-    CharacterHitEvent,
     type CharacterDamagedPayload,
+    CharacterDeathblowEvent,
     type CharacterDeathblowPayload,
+    CharacterHitEvent,
     type CharacterHitPayload,
 } from '../../../../lib/characters/events/index.js';
 import {
-    type UpdateTickPayload,
     UpdateTickEvent,
+    type UpdateTickPayload,
 } from '../../../../lib/common/events/index.js';
 import Logger from '../../../../lib/common/logger.js';
 import type ItemDefinition from '../../../../lib/equipment/item-definition.js';

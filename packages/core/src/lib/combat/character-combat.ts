@@ -3,10 +3,10 @@ import { hasValue } from '../util/functions.js';
 
 import type Damage from './damage.js';
 import {
-    CombatantAddedEvent,
-    CombatantRemovedEvent,
     CombatEndEvent,
     CombatStartEvent,
+    CombatantAddedEvent,
+    CombatantRemovedEvent,
 } from './events/index.js';
 
 export class CharacterCombat {

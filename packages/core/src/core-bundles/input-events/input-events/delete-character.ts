@@ -8,9 +8,9 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import type CharacterBrief from '../../../lib/players/character-brief.js';
 import { hasValue } from '../../../lib/util/functions.js';
 import {
-    type DeleteCharacterPayload,
     ChooseCharacterEvent,
     DeleteCharacterEvent,
+    type DeleteCharacterPayload,
 } from '../lib/events/index.js';
 
 /**

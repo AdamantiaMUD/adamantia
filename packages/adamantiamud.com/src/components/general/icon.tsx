@@ -1,13 +1,13 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { SvgIcon } from '@mui/material';
-import { forwardRef } from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
 interface FontAwesomeSvgIconProps {
     icon: IconDefinition;
 }
 
 export const Icon = forwardRef<SVGSVGElement, FontAwesomeSvgIconProps>(
-    (props, ref) => {
+    (props: FontAwesomeSvgIconProps, ref: ForwardedRef<SVGSVGElement>) => {
         const { icon } = props;
 
         const {
@@ -26,9 +26,11 @@ export const Icon = forwardRef<SVGSVGElement, FontAwesomeSvgIconProps>(
                      *
                      * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
                      */
+                    /* eslint-disable @typescript-eslint/no-magic-numbers, id-length, react/forbid-dom-props, react/jsx-key */
                     svgPathData.map((d: string, i: number) => (
                         <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
                     ))
+                    /* eslint-enable @typescript-eslint/no-magic-numbers, id-length, react/forbid-dom-props, react/jsx-key */
                 )}
             </SvgIcon>
         );

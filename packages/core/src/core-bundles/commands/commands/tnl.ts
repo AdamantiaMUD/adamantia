@@ -1,6 +1,6 @@
 import type CommandDefinitionFactory from '../../../lib/commands/command-definition-factory.js';
 import type CommandExecutable from '../../../lib/commands/command-executable.js';
-import { sayAt, progress } from '../../../lib/communication/broadcast.js';
+import { progress, sayAt } from '../../../lib/communication/broadcast.js';
 import type Player from '../../../lib/players/player.js';
 import LevelUtil from '../../../lib/util/level-util.js';
 

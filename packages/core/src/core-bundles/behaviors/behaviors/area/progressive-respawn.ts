@@ -1,7 +1,7 @@
 import type BehaviorDefinition from '../../../../lib/behaviors/behavior-definition.js';
 import {
-    type UpdateTickPayload,
     UpdateTickEvent,
+    type UpdateTickPayload,
 } from '../../../../lib/common/events/index.js';
 import Logger from '../../../../lib/common/logger.js';
 import type Item from '../../../../lib/equipment/item.js';
@@ -9,10 +9,10 @@ import type MudEventListener from '../../../../lib/events/mud-event-listener.js'
 import type GameStateData from '../../../../lib/game-state-data.js';
 import type Area from '../../../../lib/locations/area.js';
 import {
-    type AreaRoomAddedPayload,
-    type RoomRespawnTickPayload,
     AreaRoomAddedEvent,
+    type AreaRoomAddedPayload,
     RoomRespawnTickEvent,
+    type RoomRespawnTickPayload,
 } from '../../../../lib/locations/events/index.js';
 import type RoomEntityDefinition from '../../../../lib/locations/room-entity-definition.js';
 import type Room from '../../../../lib/locations/room.js';

@@ -6,8 +6,8 @@ import type StreamEventListener from '../../../lib/events/stream-event-listener.
 import type GameStateData from '../../../lib/game-state-data.js';
 import { hasValue } from '../../../lib/util/functions.js';
 import {
-    type ChangePasswordPayload,
     ChangePasswordEvent,
+    type ChangePasswordPayload,
     ConfirmPasswordEvent,
 } from '../lib/events/index.js';
 

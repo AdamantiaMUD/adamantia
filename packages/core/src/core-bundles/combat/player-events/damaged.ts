@@ -1,6 +1,6 @@
 import {
-    type CharacterDamagedPayload,
     CharacterDamagedEvent,
+    type CharacterDamagedPayload,
 } from '../../../lib/characters/events/index.js';
 import type Damage from '../../../lib/combat/damage.js';
 import Broadcast from '../../../lib/communication/broadcast.js';

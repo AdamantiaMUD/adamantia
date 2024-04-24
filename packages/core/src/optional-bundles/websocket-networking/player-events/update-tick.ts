@@ -1,6 +1,6 @@
 import {
-    type UpdateTickPayload,
     UpdateTickEvent,
+    type UpdateTickPayload,
 } from '../../../lib/common/events/index.js';
 import type Effect from '../../../lib/effects/effect.js';
 import type PlayerEventListenerDefinition from '../../../lib/events/player-event-listener-definition.js';

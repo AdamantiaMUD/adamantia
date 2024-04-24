@@ -4,8 +4,8 @@ import type PlayerEventListener from '../../../lib/events/player-event-listener.
 import type GameStateData from '../../../lib/game-state-data.js';
 import type Door from '../../../lib/locations/door.js';
 import {
-    type PlayerMovePayload,
     PlayerMoveEvent,
+    type PlayerMovePayload,
 } from '../../../lib/players/events/index.js';
 import type Player from '../../../lib/players/player.js';
 import { isNpc } from '../../../lib/util/characters.js';

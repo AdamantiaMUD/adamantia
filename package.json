@@ -8,6 +8,7 @@
         "build": "pnpm -r build",
         "clean": "pnpm -r clean",
         "lint": "pnpm -r --no-bail lint",
+        "lint:fix": "pnpm -r --no-bail lint:fix",
         "start": "pnpm --filter \"*core\" build && pnpm --filter \"*demo\" start",
         "test": "pnpm -r --no-bail test",
         "type-check": "pnpm -r type-check"

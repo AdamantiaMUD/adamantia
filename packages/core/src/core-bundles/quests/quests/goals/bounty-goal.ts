@@ -1,6 +1,6 @@
 import {
-    type PlayerEnterRoomPayload,
     PlayerEnterRoomEvent,
+    type PlayerEnterRoomPayload,
 } from '../../../../lib/players/events/index.js';
 import type Player from '../../../../lib/players/player.js';
 import { QuestProgressEvent } from '../../../../lib/quests/events/index.js';

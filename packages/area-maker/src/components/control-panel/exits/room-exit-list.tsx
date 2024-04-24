@@ -7,7 +7,7 @@ import type { FC } from 'react';
 
 import AddRemoveExitButton from '~/components/control-panel/exits/add-remove-exit-button';
 import RoomExitDetails from '~/components/control-panel/exits/room-exit-details';
-import { type RoomNode, ExitDirection } from '~/interfaces';
+import { ExitDirection, type RoomNode } from '~/interfaces';
 
 interface ComponentProps {
     room: RoomNode;

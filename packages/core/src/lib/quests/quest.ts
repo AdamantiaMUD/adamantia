@@ -5,9 +5,9 @@ import type Player from '../players/player.js';
 import { clone } from '../util/objects.js';
 
 import {
-    type QuestProgressPayload,
     QuestCompletedEvent,
     QuestProgressEvent,
+    type QuestProgressPayload,
     QuestTurnInReadyEvent,
 } from './events/index.js';
 import type QuestDefinition from './quest-definition.js';

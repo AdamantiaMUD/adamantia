@@ -3,9 +3,9 @@ import wrapAnsi from 'wrap-ansi';
 
 import type Player from '../players/player.js';
 import {
+    NOOP_FORMATTER,
     colorize,
     isBroadcastable,
-    NOOP_FORMATTER,
 } from '../util/communication.js';
 import { cast } from '../util/functions.js';
 

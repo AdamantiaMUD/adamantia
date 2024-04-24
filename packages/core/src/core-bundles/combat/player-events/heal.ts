@@ -1,6 +1,6 @@
 import {
-    type CharacterHealPayload,
     CharacterHealEvent,
+    type CharacterHealPayload,
 } from '../../../lib/characters/events/index.js';
 import Broadcast from '../../../lib/communication/broadcast.js';
 import type MudEventListenerDefinition from '../../../lib/events/mud-event-listener-definition.js';

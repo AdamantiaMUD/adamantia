@@ -13,9 +13,9 @@ import { hasValue } from '../util/functions.js';
 
 import type AbstractQuest from './abstract-quest.js';
 import {
-    type QuestProgressPayload,
     QuestCompletedEvent,
     QuestProgressEvent,
+    type QuestProgressPayload,
     QuestRewardEvent,
     QuestStartedEvent,
     QuestTurnInReadyEvent,

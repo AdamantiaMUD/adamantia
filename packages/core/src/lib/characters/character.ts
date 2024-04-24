@@ -14,8 +14,8 @@ import ScriptableEntity from '../entities/scriptable-entity.js';
 import type SerializedScriptableEntity from '../entities/serialized-scriptable-entity.js';
 import {
     AlreadyEquippedError,
-    SlotTakenError,
     InventoryFullError,
+    SlotTakenError,
 } from '../equipment/errors/index.js';
 import {
     ItemEquippedEvent,

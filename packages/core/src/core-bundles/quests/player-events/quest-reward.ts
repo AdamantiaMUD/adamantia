@@ -2,8 +2,8 @@ import type PlayerEventListenerDefinition from '../../../lib/events/player-event
 import type PlayerEventListener from '../../../lib/events/player-event-listener.js';
 import type Player from '../../../lib/players/player.js';
 import {
-    type QuestRewardPayload,
     QuestRewardEvent,
+    type QuestRewardPayload,
 } from '../../../lib/quests/events/index.js';
 
 export const evt: PlayerEventListenerDefinition<QuestRewardPayload> = {

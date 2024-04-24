@@ -2,7 +2,7 @@ import { type FC, useMemo } from 'react';
 import { Line } from 'react-konva';
 
 import { GRID_SIZE } from '~/constants';
-import { type RoomLinkNode, type RoomNode, ExitDirection } from '~/interfaces';
+import { ExitDirection, type RoomLinkNode, type RoomNode } from '~/interfaces';
 
 interface ComponentProps {
     fromRoom: RoomNode;
