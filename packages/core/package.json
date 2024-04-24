@@ -8,8 +8,8 @@
     "bugs": "https://github.com/AdamantiaMUD/adamantia/issues",
     "keywords": [],
     "homepage": "https://github.com/AdamantiaMUD/adamantia/tree/main/packages/core#readme",
-    "main": "build/lib/index.js",
-    "typings": "build/lib/index.d.ts",
+    "main": "build/index.js",
+    "typings": "build/index.d.ts",
     "type": "module",
     "files": [
         "src/**/*",
