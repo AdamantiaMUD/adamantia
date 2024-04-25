@@ -48,7 +48,7 @@ export const at = (
 
                 targetMessage =
                     wrapWidth > 0
-                        ? wrapAnsi(targetMessage, Number(wrapWidth))
+                        ? wrapAnsi(colorize(targetMessage), Number(wrapWidth))
                         : colorize(targetMessage);
 
                 playerTarget.socket.write(targetMessage);
