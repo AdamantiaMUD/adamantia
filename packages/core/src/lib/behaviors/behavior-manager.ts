@@ -1,3 +1,4 @@
+import Logger from '../common/logger.js';
 import type MudEventListener from '../events/mud-event-listener.js';
 import MudEventManager from '../events/mud-event-manager.js';
 
@@ -36,6 +37,12 @@ export class BehaviorManager {
 
     public has(behaviorName: string): boolean {
         return this._behaviors.has(behaviorName);
+    }
+
+    public dump(): void {
+        this._behaviors.forEach((eventManager, behaviorName) => {
+            Logger.log(` - '${behaviorName}'`);
+        });
     }
 }
 

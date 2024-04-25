@@ -1,8 +1,7 @@
+import type ScriptableEntityDefinition from '../entities/scriptable-entity-definition.js';
 import type SimpleMap from '../util/simple-map.js';
 
-export interface NpcDefinition {
-    attributes?: SimpleMap;
-    behaviors?: Record<string, SimpleMap>;
+export interface NpcDefinition extends ScriptableEntityDefinition {
     corpseDesc?: string;
     defaultEquipment?: Record<string, string>;
     description: string;
@@ -15,7 +14,6 @@ export interface NpcDefinition {
     name: string;
     quests?: string[];
     roomDesc?: string;
-    script?: string;
     shortName?: string;
     type?: string;
     uuid?: string;

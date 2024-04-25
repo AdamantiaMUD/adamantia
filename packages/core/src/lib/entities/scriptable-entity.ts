@@ -17,7 +17,7 @@ export class ScriptableEntity extends GameEntity {
     protected _script: string | null;
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
-    public constructor(def?: ScriptableEntityDefinition) {
+    public constructor(def: ScriptableEntityDefinition | null) {
         super(def);
 
         this._behaviors =

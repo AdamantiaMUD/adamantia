@@ -32,6 +32,20 @@ export class CharacterAttributes implements Serializable {
         this._attributes.set(attribute.name, attribute);
     }
 
+    public addDefault(
+        attributeDef: { name: string; base: number },
+        state: GameStateData
+    ): void {
+        if (state.attributeFactory.has(attributeDef.name)) {
+            const attribute = state.attributeFactory.create(
+                attributeDef.name,
+                attributeDef.base
+            );
+
+            this.add(attribute!);
+        }
+    }
+
     public deserialize(
         data: SerializedCharacterAttributes,
         state: GameStateData

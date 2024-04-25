@@ -50,7 +50,11 @@ export const Data = {
 
         const fileTest = /(?!test\.)[jt]s$/u;
 
-        return fs.statSync(uri).isFile() && fileTest.exec(script) !== null;
+        if (!fs.statSync(uri, { throwIfNoEntry: false })?.isFile()) {
+            return false;
+        }
+
+        return fileTest.exec(script) !== null;
     },
 
     /**

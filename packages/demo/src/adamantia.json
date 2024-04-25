@@ -1,5 +1,10 @@
 {
-    "bundles": ["adamantia.character-attributes", "character-classes"],
+    "bundles": [
+        "adamantia.character-attributes",
+        "adamantia.simple-combat",
+        "character-classes"
+    ],
+    "combatEngine": "adamantia.simple-combat",
     "logfile": "server.log",
     "players": {
         "startingRoom": "dragonshade:r0001"

@@ -1,5 +1,5 @@
-import { ADAMANTIA_INTERNAL_BUNDLE } from '../bundle-manager.js';
 import { UpdateTickEvent } from '../common/events/index.js';
+import { ADAMANTIA_INTERNAL_BUNDLE } from '../constants.js';
 import MudEventEmitter from '../events/mud-event-emitter.js';
 import type GameStateData from '../game-state-data.js';
 import { hasValue } from '../util/functions.js';

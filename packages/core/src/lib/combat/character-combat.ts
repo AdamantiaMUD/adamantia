@@ -35,6 +35,38 @@ export class CharacterCombat {
         return this._combatants;
     }
 
+    public get killed(): boolean {
+        return this._killed;
+    }
+
+    public set killed(value: boolean) {
+        this._killed = value;
+    }
+
+    public get killedBy(): Character | null {
+        return this._killedBy;
+    }
+
+    public set killedBy(value: Character | null) {
+        this._killedBy = value;
+    }
+
+    public get lag(): number {
+        return this._lag;
+    }
+
+    public set lag(value: number) {
+        this._lag = value;
+    }
+
+    public get roundStarted(): number {
+        return this._roundStarted;
+    }
+
+    public set roundStarted(value: number) {
+        this._roundStarted = value;
+    }
+
     public addCombatant(target: Character): void {
         if (this.isFighting(target)) {
             return;

@@ -21,7 +21,7 @@ export class Area extends ScriptableEntity implements Broadcastable {
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
     public constructor(bundle: string, ref: string, manifest: AreaManifest) {
-        super();
+        super(null);
 
         this._name = manifest.name;
 

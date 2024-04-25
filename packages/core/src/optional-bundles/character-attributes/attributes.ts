@@ -2,7 +2,6 @@ import type AttributeDefinition from '../../lib/attributes/attribute-definition.
 
 const atts: AttributeDefinition[] = [
     // Core stats
-    { name: 'hp', base: 1 },
     { name: 'move', base: 80 },
     { name: 'speed', base: 2.5 },
 

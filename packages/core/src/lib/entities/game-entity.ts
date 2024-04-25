@@ -31,7 +31,7 @@ export abstract class GameEntity
     private _metadata: SimpleMap = {};
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
-    protected constructor(def?: GameEntityDefinition) {
+    protected constructor(def: GameEntityDefinition | null) {
         super();
 
         this._metadata = clone(def?.metadata ?? {});

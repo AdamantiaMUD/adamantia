@@ -10,6 +10,7 @@ import type TransportStream from '../communication/transport-stream.js';
 import type Serializable from '../data/serializable.js';
 import EffectList from '../effects/effect-list.js';
 import type Effect from '../effects/effect.js';
+import type ScriptableEntityDefinition from '../entities/scriptable-entity-definition.js';
 import ScriptableEntity from '../entities/scriptable-entity.js';
 import type SerializedScriptableEntity from '../entities/serialized-scriptable-entity.js';
 import {
@@ -52,6 +53,9 @@ export abstract class Character
     protected readonly _attributes: CharacterAttributes;
     protected readonly _combat: CharacterCombat;
     protected readonly _commandQueue: CommandQueue = new CommandQueue();
+    protected readonly _defaultAttributes: NonNullable<
+        ScriptableEntityDefinition['attributes']
+    >;
     protected readonly _effects: EffectList;
     protected readonly _equipment: Map<string, Item> = new Map<string, Item>();
     protected readonly _followers: Set<Character> = new Set<Character>();
@@ -64,12 +68,26 @@ export abstract class Character
     public socket: TransportStream<EventEmitter> | null = null;
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
-    protected constructor() {
-        super();
+    protected constructor(def: ScriptableEntityDefinition | null) {
+        super(def);
 
         this._attributes = new CharacterAttributes(this);
         this._combat = new CharacterCombat(this);
         this._effects = new EffectList(this);
+
+        if (typeof def?.attributes === 'undefined') {
+            this._defaultAttributes = {};
+        } else {
+            this._defaultAttributes = def.attributes;
+        }
+    }
+
+    public hydrate(state: GameStateData): void {
+        super.hydrate(state);
+
+        Object.entries(this._defaultAttributes).forEach(([name, { base }]) => {
+            this._attributes.addDefault({ name, base }, state);
+        });
     }
 
     public get attributes(): CharacterAttributes {

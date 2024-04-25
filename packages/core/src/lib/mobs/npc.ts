@@ -33,7 +33,7 @@ export class Npc extends Character implements Serializable {
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
     public constructor(area: Area, data: NpcDefinition) {
-        super();
+        super(data);
 
         this._description = data.description;
         this._name = data.name;

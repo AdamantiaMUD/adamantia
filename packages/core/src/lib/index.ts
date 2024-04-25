@@ -46,7 +46,7 @@ export type { PlayerClass } from './classes/player-class.js';
 export * as CombatErrors from './combat/errors/index.js';
 export * as CombatEvents from './combat/events/index.js';
 export { CharacterCombat } from './combat/character-combat.js';
-export type { CombatEngine } from './combat/combat-engine.js';
+export { CombatEngine } from './combat/combat-engine.js';
 export { Damage } from './combat/damage.js';
 export { Heal } from './combat/heal.js';
 export { LootTable } from './combat/loot-table.js';

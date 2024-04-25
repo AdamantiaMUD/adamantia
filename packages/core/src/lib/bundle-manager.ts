@@ -18,7 +18,7 @@ import type GameEntityDefinition from './entities/game-entity-definition.js';
 import type GameEntity from './entities/game-entity.js';
 import type ScriptableEntityDefinition from './entities/scriptable-entity-definition.js';
 import type ScriptableEntity from './entities/scriptable-entity.js';
-import type GameStateData from './game-state-data.js';
+import GameState from './game-state.js';
 import type HelpfileOptions from './help/helpfile-options.js';
 import Helpfile from './help/helpfile.js';
 import type AreaDefinition from './locations/area-definition.js';
@@ -27,6 +27,7 @@ import type {
     AttributeModule,
     BehaviorModule,
     CharacterClassModule,
+    CombatEngineModule,
     CommandModule,
     EffectModule,
     EntityScriptModule,
@@ -44,7 +45,8 @@ import { cast, hasValue } from './util/functions.js';
 /* eslint-disable-next-line @typescript-eslint/naming-convention, id-match */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const ADAMANTIA_INTERNAL_BUNDLE = '_adamantia-internal-bundle';
+const coreBundlesFolder = path.join(__dirname, '..', 'core-bundles');
+const optionalBundlesFolder = path.join(__dirname, '..', 'optional-bundles');
 
 const getDirectories = async (directory: string): Promise<string[]> => {
     const files: Dirent[] = await fs.readdir(directory, {
@@ -69,13 +71,25 @@ const getFiles = async (directory: string): Promise<string[]> => {
         .map((file: Dirent): string => file.name);
 };
 
+const getPathToBundle = (bundleRef: string, bundlesFolder?: string): string => {
+    if (bundleRef.startsWith('core.')) {
+        return path.join(coreBundlesFolder, bundleRef.substring(5));
+    }
+
+    if (bundleRef.startsWith('adamantia.')) {
+        return path.join(optionalBundlesFolder, bundleRef.substring(10));
+    }
+
+    return path.join(bundlesFolder ?? '', bundleRef);
+};
+
 export class BundleManager {
     /* eslint-disable @typescript-eslint/lines-between-class-members */
     private readonly _areas: string[] = [];
-    private readonly _state: GameStateData;
+    private readonly _state: GameState;
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
-    public constructor(state: GameStateData) {
+    public constructor(state: GameState) {
         const bundlePath: string = state.config.getPath('bundles');
         const dataPath: string = state.config.getPath('data');
         const rootPath: string = state.config.getPath('root');
@@ -295,7 +309,7 @@ export class BundleManager {
         const loadEntityBehaviors = async (
             type: string,
             manager: BehaviorManager,
-            state: GameStateData
+            state: GameState
         ): Promise<void> => {
             const typeDir = path.join(uri, type);
 
@@ -413,6 +427,36 @@ export class BundleManager {
             ) {
                 await this._loadBundle(`${prefix}${bundle}`, bundlePath);
             }
+        }
+    }
+
+    private async _loadCombatEngine(bundlesFolder: string): Promise<void> {
+        const bundle = this._state.config.getCombatEngine();
+        if (!bundle || !this._isBundleEnabled(bundle)) {
+            return;
+        }
+
+        const bundlePath = getPathToBundle(bundle, bundlesFolder);
+        const combatEnginePath = (await getFiles(bundlePath)).find(
+            (name: string): boolean => name.startsWith('combat-engine')
+        );
+
+        if (!combatEnginePath) {
+            return;
+        }
+
+        const uri = path.join(bundlePath, combatEnginePath);
+        if (Data.isScriptFile(uri)) {
+            Logger.verbose(`LOAD: ${bundle} - Combat Engine -- START`);
+
+            /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
+            const engineImport: CombatEngineModule = await import(
+                pathToFileURL(uri).toString()
+            );
+            const Engine = engineImport.default;
+            this._state.setCombatEngine(new Engine());
+
+            Logger.verbose(`LOAD: ${bundle} - Combat Engine -- END`);
         }
     }
 
@@ -925,19 +969,24 @@ export class BundleManager {
     public async loadBundles(): Promise<void> {
         Logger.verbose('LOAD: BUNDLES -- START');
 
-        const coreBundlesDir = path.join(__dirname, '..', 'core-bundles');
-        const optionalBundlesDir = path.join(
-            __dirname,
-            '..',
-            'optional-bundles'
-        );
-        const bundlePath: string = this._state.config.getPath('bundles');
+        const bundlesFolder: string = this._state.config.getPath('bundles');
 
-        await this._loadBundlesFromFolder(coreBundlesDir, 'core.');
-        await this._loadBundlesFromFolder(optionalBundlesDir, 'adamantia.');
-        await this._loadBundlesFromFolder(bundlePath);
+        await this._loadBundlesFromFolder(coreBundlesFolder, 'core.');
+        await this._loadBundlesFromFolder(optionalBundlesFolder, 'adamantia.');
+        await this._loadBundlesFromFolder(bundlesFolder);
+
+        await this._loadCombatEngine(bundlesFolder);
 
         Logger.verbose('LOAD: BUNDLES -- END');
+
+        Logger.verbose('Area behaviors');
+        this._state.areaBehaviorManager.dump();
+        Logger.verbose('Item behaviors');
+        this._state.itemBehaviorManager.dump();
+        Logger.verbose('Mob behaviors');
+        this._state.mobBehaviorManager.dump();
+        Logger.verbose('Room behaviors');
+        this._state.roomBehaviorManager.dump();
 
         /*
          * Distribution is done after all areas are loaded in case items in one

@@ -44,7 +44,7 @@ export class Player extends Character implements Broadcastable {
     >();
 
     public constructor() {
-        super();
+        super(null);
 
         this._questTracker = new QuestTracker(this);
     }

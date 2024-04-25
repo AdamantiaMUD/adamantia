@@ -11,6 +11,7 @@ export interface MudConfig {
         skillLag?: number;
     };
     bundles: string[];
+    combatEngine?: string;
     logfile: string;
     paths: {
         bundles: string;
@@ -35,6 +36,7 @@ const DEFAULT_CONFIG: MudConfig = {
         skillLag: 0,
     },
     bundles: [],
+    combatEngine: '',
     logfile: '',
     paths: {
         bundles: '',
@@ -64,6 +66,10 @@ export class Config {
 
     public getBundles(): string[] {
         return this._config.bundles;
+    }
+
+    public getCombatEngine(): string | undefined {
+        return this._config.combatEngine;
     }
 
     public getLogfile(): string {
