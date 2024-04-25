@@ -7,7 +7,7 @@
     "combatEngine": "adamantia.simple-combat",
     "logfile": "server.log",
     "players": {
-        "startingRoom": "dragonshade:r0001"
+        "startingRoom": "beachhedge:r0108"
     },
     "ports": {
         "telnet": 4000
