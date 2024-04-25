@@ -1,0 +1,18 @@
+{
+    "id": "r0117",
+    "title": "{cyan Harbor Road}",
+    "description": "This road stretches from the northern parts of Beachhedge, past the city {blueBright docks}, and all the way to the southern part of the city, where the wealthiest people live. The {cyan ocean} can be seen to the west.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0101"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0116"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

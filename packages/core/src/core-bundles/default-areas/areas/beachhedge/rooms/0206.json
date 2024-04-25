@@ -1,0 +1,18 @@
+{
+    "id": "r0206",
+    "title": "A {gray Dingy}, Well-Trodden {yellow Path}",
+    "description": "The path here seems to be well traveled. You come across the occasional undead servant carrying bags of what you can only assume to be garbage, judging by the terrible odor emanating from their cargo.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0201"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0210"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

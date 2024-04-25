@@ -1,0 +1,22 @@
+{
+    "id": "r0115",
+    "title": "The Intersection of the {yellow Eastern Road} and {yellowBright Market Way}",
+    "description": "The road here follows the eastern wall of Beachhedge. On the other side, you can see rolling fields leading to distant mountains. A number of modest sized houses line the road. The city center and the town square lie due west, down a bustling street crowded with vendors.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0100"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0122"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0114"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

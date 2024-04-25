@@ -1,0 +1,18 @@
+{
+    "id": "r0017",
+    "title": "The Street of {greenBright Green} and {yellowBright Gold}",
+    "description": "Contrary to its name, the northern district of Beachhedge is home to some of the less savory types of people in the city. As you hurry past closed doors and dark alleys, you begin to wonder if you shouldn't turn back.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0018"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0016"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

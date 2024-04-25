@@ -1,0 +1,26 @@
+{
+    "id": "r0107",
+    "title": "The {yellow Town Square} and {green City Market}",
+    "description": "The air is buzzing with activity. It doesn't help that many of the market's patrons are undead creatures serving their owners, but that's Beachhedge. Vendors selling all sorts of items vie for your attention as you make your way through the crowd.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0095"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0118"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0108"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0106"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

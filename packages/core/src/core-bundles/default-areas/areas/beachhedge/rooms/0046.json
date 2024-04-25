@@ -1,0 +1,18 @@
+{
+    "id": "r0046",
+    "title": "{blueBright The Entrance to the City Docks}",
+    "description": "As you step onto the pier, you feel the boards beneath your feet sway as the ocean waves slosh against the supports. A gentle {cyan ocean mist} rolls in on the breeze.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0047"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0045"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

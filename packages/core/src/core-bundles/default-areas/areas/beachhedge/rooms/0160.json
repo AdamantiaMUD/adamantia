@@ -1,0 +1,22 @@
+{
+    "id": "r0160",
+    "title": "{blue Fountain Road} at the {green Entrance to the} {greenBright City Park}",
+    "description": "Named for the prominent feature in the town square, this road is lined with fresh flowers and a small artificial waterway. It stretches from the town square southward toward the wealthy district. From the east, the smell of fresh cut grass wafts in on the breeze.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0149"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0173"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0161"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

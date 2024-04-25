@@ -1,0 +1,18 @@
+{
+    "id": "r0077",
+    "title": "The {yellow Eastern Road}",
+    "description": "The road here follows the eastern wall of Beachhedge. On the other side, you can see rolling fields leading to distant mountains. A number of modest sized houses line the road.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0064"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0091"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}
