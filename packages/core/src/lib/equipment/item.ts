@@ -124,6 +124,8 @@ export class Item extends ScriptableEntity implements Serializable {
         }
 
         super.hydrate(state);
+
+        this._setupBehaviors(state.itemBehaviorManager);
     }
 
     public removeItem(item: Item): void {

@@ -27,11 +27,11 @@ export class SimpleCombatEngine extends CombatEngine {
         }
 
         for (const target of attacker.combat.combatants) {
-            if (!target.attributes.has('health')) {
+            if (!target.attributes.has('hp')) {
                 throw new CombatErrors.CombatInvalidTargetError();
             }
 
-            if (target.getAttribute('health') > 0) {
+            if (target.getAttribute('hp') > 0) {
                 return target;
             }
         }
@@ -72,7 +72,7 @@ export class SimpleCombatEngine extends CombatEngine {
             );
         }
 
-        if (!target.attributes.has('health')) {
+        if (!target.attributes.has('hp')) {
             throw new CombatErrors.CombatInvalidTargetError(
                 "You can't attack that target"
             );
@@ -203,13 +203,9 @@ export class SimpleCombatEngine extends CombatEngine {
         }
 
         const weapon = attacker.equipment.get('wield');
-        const damage = new Damage(
-            'health',
-            amount,
-            attacker,
-            weapon ?? attacker,
-            { critical }
-        );
+        const damage = new Damage('hp', amount, attacker, weapon ?? null, {
+            critical,
+        });
         damage.commit(target);
 
         // currently lag is really simple, the character's weapon speed = lag

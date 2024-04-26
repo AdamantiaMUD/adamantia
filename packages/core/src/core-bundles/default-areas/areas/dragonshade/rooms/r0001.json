@@ -29,6 +29,11 @@
             "id": "dragonshade:m0001",
             "respawnChance": 100,
             "maxLoad": 1
+        },
+        {
+            "id": "dragonshade:m0002",
+            "respawnChance": 100,
+            "maxLoad": 1
         }
     ],
     "items": [

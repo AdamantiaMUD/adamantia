@@ -34,7 +34,7 @@ export class ScriptableEntity extends GameEntity {
      * Attach this entity's behaviors from the manager
      * @param {BehaviorManager} manager
      */
-    private _setupBehaviors(manager: BehaviorManager): void {
+    protected _setupBehaviors(manager: BehaviorManager): void {
         /* eslint-disable-next-line prefer-const */
         for (let [name, config] of this._behaviors) {
             const behavior = manager.get(name);
@@ -69,8 +69,6 @@ export class ScriptableEntity extends GameEntity {
 
     public hydrate(state: GameStateData): void {
         super.hydrate(state);
-
-        this._setupBehaviors(state.itemBehaviorManager);
     }
 
     public serialize(): SerializedScriptableEntity {

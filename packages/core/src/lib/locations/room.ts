@@ -1,3 +1,4 @@
+import { UpdateTickEvent } from '../common/events/index.js';
 import Logger from '../common/logger.js';
 import type Broadcastable from '../communication/broadcastable.js';
 import ScriptableEntity from '../entities/scriptable-entity.js';
@@ -55,6 +56,23 @@ export class Room extends ScriptableEntity implements Broadcastable {
             metadata: def.metadata ?? null,
             entityReference: `${area.entityReference}:${def.id}`,
         });
+
+        this.listen(UpdateTickEvent.getName(), this._tickAll.bind(this));
+    }
+
+    /**
+     * This method is automatically called every N milliseconds where N is
+     * defined in the `entityTickFrequency` configuration setting. It, in turn,
+     * will fire the `updateTick` event on all its rooms
+     */
+    private _tickAll(): void {
+        for (const npc of this._spawnedNpcs) {
+            npc.dispatch(new UpdateTickEvent());
+        }
+
+        for (const item of this._items) {
+            item.dispatch(new UpdateTickEvent());
+        }
     }
 
     private _setDoorsFromDef(doors: Record<string, Door>): void {
@@ -195,6 +213,8 @@ export class Room extends ScriptableEntity implements Broadcastable {
 
     public hydrate(state: GameStateData): void {
         super.hydrate(state);
+
+        this._setupBehaviors(state.roomBehaviorManager);
 
         /**
          * Fires when the room is created but before it has hydrated its default

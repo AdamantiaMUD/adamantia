@@ -79,6 +79,8 @@ export class Npc extends Character implements Serializable {
     public hydrate(state: GameStateData): boolean {
         super.hydrate(state);
 
+        this._setupBehaviors(state.mobBehaviorManager);
+
         state.mobManager.add(this);
 
         for (const defaultItemId of this.defaultItems) {

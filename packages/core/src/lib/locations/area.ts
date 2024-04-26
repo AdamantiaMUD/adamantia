@@ -86,6 +86,8 @@ export class Area extends ScriptableEntity implements Broadcastable {
             return;
         }
 
+        this._setupBehaviors(state.areaBehaviorManager);
+
         for (const roomRef of areaDef.rooms) {
             const room = state.roomFactory.create(roomRef, this);
 

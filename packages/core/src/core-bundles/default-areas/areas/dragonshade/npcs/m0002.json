@@ -1,0 +1,11 @@
+{
+    "id": "m0002",
+    "keywords": ["squirrel"],
+    "name": "A mangy squirrel",
+    "description": "A mangy squirrel is digging through the trash. It looks up at you with beady eyes and chatters angrily.",
+    "level": 1,
+    "behaviors": {
+        "combat": true
+    },
+    "attributes": { "hp": { "base": 5 } }
+}

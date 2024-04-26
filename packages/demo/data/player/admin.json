@@ -2,11 +2,16 @@
     "entityReference": null,
     "metadata": {},
     "behaviors": {},
-    "attributes": {},
+    "attributes": {
+        "hp": {
+            "delta": -6,
+            "base": 999
+        }
+    },
     "level": 1,
     "name": "Admin",
-    "room": "beachhedge:r0108",
-    "experience": 0,
+    "room": "dragonshade:r0001",
+    "experience": 150,
     "prompt": "> ",
     "role": 2
 }
