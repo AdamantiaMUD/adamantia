@@ -21,5 +21,4 @@ export const isIterable = (obj: unknown): boolean => {
     return false;
 };
 
-/* eslint-disable-next-line @typescript-eslint/no-unsafe-call */
 export const clone: <T = unknown>(obj: T) => T = cloneFactory();

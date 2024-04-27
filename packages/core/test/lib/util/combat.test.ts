@@ -1,33 +1,26 @@
 import each from 'jest-each';
 
-import {makeCorpse} from '../../../src/lib/util/combat.js';
-import Area from '../../../src/lib/locations/area.js';
-import ItemType from '../../../src/lib/equipment/item-type.js';
-import Npc from '../../../src/lib/mobs/npc.js';
-
 import type ItemDefinition from '../../../src/lib/equipment/item-definition.js';
+import ItemType from '../../../src/lib/equipment/item-type.js';
+import Area from '../../../src/lib/locations/area.js';
+import Npc from '../../../src/lib/mobs/npc.js';
+import { makeCorpse } from '../../../src/lib/util/combat.js';
 
-const makeArea = (name: string): Area => new Area(
-    'test-bundle',
-    name.toUpperCase(),
-    {name}
-);
+const makeArea = (name: string): Area =>
+    new Area('test-bundle', name.toUpperCase(), { name });
 
 describe('combat.ts', () => {
     describe('makeCorpse()', () => {
         const testCases = [
             [
-                new Npc(
-                    makeArea('foo'),
-                    {
-                        description: 'Sample NPC #1',
-                        entityReference: 'sample-1',
-                        id: 'sample-1',
-                        keywords: [],
-                        name: 'Sample Bob',
-                        level: 1,
-                    }
-                ),
+                new Npc(makeArea('foo'), {
+                    description: 'Sample NPC #1',
+                    entityReference: 'sample-1',
+                    id: 'sample-1',
+                    keywords: [],
+                    name: 'Sample Bob',
+                    level: 1,
+                }),
                 {
                     id: 'corpse',
                     name: 'Corpse of Sample Bob',
@@ -48,12 +41,14 @@ describe('combat.ts', () => {
             ],
         ];
 
-        each(testCases)
-            .it('should make the corpse correctly', (npc: Npc, output: ItemDefinition) => {
+        each(testCases).it(
+            'should make the corpse correctly',
+            (npc: Npc, output: ItemDefinition) => {
                 expect.assertions(1);
 
                 /* eslint-disable-next-line jest/no-standalone-expect */
                 expect(makeCorpse(npc)).toStrictEqual(output);
-            });
+            }
+        );
     });
 });

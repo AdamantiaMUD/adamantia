@@ -2,13 +2,11 @@
 const path = require('path');
 
 module.exports = {
-    collectCoverageFrom: [
-        '<rootDir>/src/**/*.ts',
-        '!<rootDir>/src/index.ts',
-    ],
+    collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/index.ts'],
 
     moduleNameMapper: {
-        '^~/(.*)$': path.resolve(__dirname, './src/$1'),
+        '^~/(.*).js$': path.resolve(__dirname, './src/$1'),
+        '^(..?/.+).js?$': '$1',
     },
 
     roots: ['<rootDir>/test'],

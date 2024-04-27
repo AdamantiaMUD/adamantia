@@ -1,4 +1,10 @@
-import Config from '../../../src/lib/util/config.js';
+import Config, { DEFAULT_CONFIG } from '../../../src/lib/util/config.js';
+
+const TEST_CONFIG = {
+    ...DEFAULT_CONFIG,
+    combatEngine: 'test',
+    logfile: 'test.log',
+};
 
 describe('config.ts', () => {
     it('`load()` should populate the data correctly', () => {
@@ -6,11 +12,11 @@ describe('config.ts', () => {
 
         const cfg = new Config();
 
-        expect(cfg.get('foo')).toBeNull();
+        expect(cfg.get('logfile')).toBe('');
 
-        cfg.load({foo: 'bar'});
+        cfg.load(TEST_CONFIG);
 
-        expect(cfg.get('foo')).toStrictEqual('bar');
+        expect(cfg.get('logfile')).toBe(TEST_CONFIG.logfile);
     });
 
     it('`set()` should update a value correctly', () => {
@@ -18,12 +24,12 @@ describe('config.ts', () => {
 
         const cfg = new Config();
 
-        cfg.load({foo: 'bar'});
+        cfg.load(TEST_CONFIG);
 
-        expect(cfg.get('foo')).toStrictEqual('bar');
+        expect(cfg.get('logfile')).toBe(TEST_CONFIG.logfile);
 
-        cfg.set('foo', 'baz');
+        cfg.set('logfile', 'something-else.log');
 
-        expect(cfg.get('foo')).toStrictEqual('baz');
+        expect(cfg.get('logfile')).toBe('something-else.log');
     });
 });

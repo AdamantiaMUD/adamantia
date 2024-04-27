@@ -11,7 +11,7 @@ describe('BehaviorManager', () => {
 
             mgr.addListener('listen', 'music', () => {});
 
-            expect(behavior.get('music').size).toStrictEqual(1);
+            expect(behavior.get('music').size).toBe(1);
         });
     });
 
@@ -22,7 +22,7 @@ describe('BehaviorManager', () => {
             const mgr = new BehaviorManager();
 
             expect(mgr.get('missing')).toBeInstanceOf(MudEventManager);
-            expect(mgr.get('missing').size).toStrictEqual(0);
+            expect(mgr.get('missing').size).toBe(0);
         });
 
         it('should return an event manager with the expected number of listeners', () => {
@@ -33,7 +33,7 @@ describe('BehaviorManager', () => {
             mgr.addListener('present', 'give', () => {});
 
             expect(mgr.get('present')).toBeInstanceOf(MudEventManager);
-            expect(mgr.get('present').size).toStrictEqual(1);
+            expect(mgr.get('present').size).toBe(1);
         });
     });
 
@@ -43,7 +43,7 @@ describe('BehaviorManager', () => {
 
             const mgr = new BehaviorManager();
 
-            expect(mgr.has('missing')).toStrictEqual(false);
+            expect(mgr.has('missing')).toBe(false);
         });
 
         it('should return true if the given behavior exists', () => {
@@ -53,7 +53,7 @@ describe('BehaviorManager', () => {
 
             mgr.addListener('present', 'give', () => {});
 
-            expect(mgr.has('present')).toStrictEqual(true);
+            expect(mgr.has('present')).toBe(true);
         });
     });
 });

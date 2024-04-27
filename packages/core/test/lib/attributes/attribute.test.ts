@@ -9,8 +9,8 @@ describe('Attribute', () => {
 
             att.modify(-5);
 
-            expect(att.delta).toStrictEqual(-5);
-            expect(att.value).toStrictEqual(10);
+            expect(att.delta).toBe(-5);
+            expect(att.value).toBe(10);
         });
 
         it('should raise the attribute given a positive number', () => {
@@ -20,8 +20,8 @@ describe('Attribute', () => {
 
             att.modify(3);
 
-            expect(att.delta).toStrictEqual(-7);
-            expect(att.value).toStrictEqual(8);
+            expect(att.delta).toBe(-7);
+            expect(att.value).toBe(8);
         });
     });
 
@@ -33,11 +33,11 @@ describe('Attribute', () => {
 
             att.setDelta(-5);
 
-            expect(att.delta).toStrictEqual(-5);
+            expect(att.delta).toBe(-5);
 
             att.reset();
 
-            expect(att.delta).toStrictEqual(0);
+            expect(att.delta).toBe(0);
         });
     });
 
@@ -49,7 +49,7 @@ describe('Attribute', () => {
 
             att.setBase(25);
 
-            expect(att.base).toStrictEqual(25);
+            expect(att.base).toBe(25);
         });
 
         it('will not set a base value below 0', () => {
@@ -59,7 +59,7 @@ describe('Attribute', () => {
 
             att.setBase(-25);
 
-            expect(att.base).toStrictEqual(0);
+            expect(att.base).toBe(0);
         });
     });
 
@@ -71,7 +71,7 @@ describe('Attribute', () => {
 
             att.setDelta(-5);
 
-            expect(att.delta).toStrictEqual(-5);
+            expect(att.delta).toBe(-5);
         });
 
         it('will not set a base value below 0', () => {
@@ -81,7 +81,7 @@ describe('Attribute', () => {
 
             att.setDelta(5);
 
-            expect(att.delta).toStrictEqual(0);
+            expect(att.delta).toBe(0);
         });
     });
 });

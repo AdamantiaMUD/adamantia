@@ -31,7 +31,7 @@ export interface MudConfig {
     ports: Record<string, number>;
 }
 
-const DEFAULT_CONFIG: MudConfig = {
+export const DEFAULT_CONFIG: MudConfig = {
     abilities: {
         skillLag: 0,
     },

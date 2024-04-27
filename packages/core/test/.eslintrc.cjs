@@ -2,10 +2,10 @@
 
 module.exports = {
     extends: ['../.eslintrc.cjs'],
-    'parserOptions': {
+    parserOptions: {
         project: '../tsconfig.eslint.json',
     },
-    'settings': {
+    settings: {
         'import/resolver': {
             typescript: {
                 project: '../tsconfig.eslint.json',
