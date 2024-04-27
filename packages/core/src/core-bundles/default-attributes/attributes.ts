@@ -2,9 +2,9 @@ import type AttributeDefinition from '../../lib/attributes/attribute-definition.
 
 const atts: AttributeDefinition[] = [
     {
-        name: 'hp',
-        base: 1,
-        entityTypes: { item: false, npc: 'required', player: 'required' },
+        name: 'move',
+        base: 80,
+        entityTypes: { item: false, npc: 'optional', player: 'required' },
     },
 ];
 

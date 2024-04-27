@@ -12,6 +12,11 @@ export abstract class EntityFactory<
 > {
     /* eslint-disable @typescript-eslint/lines-between-class-members */
     protected _entities: Map<string, TDef> = new Map<string, TDef>();
+    protected _requiredAttributes = {
+        items: new Set<string>(),
+        npcs: new Set<string>(),
+        rooms: new Set<string>(),
+    };
     protected _scripts: BehaviorManager = new BehaviorManager();
     /* eslint-enable @typescript-eslint/lines-between-class-members */
 
@@ -21,6 +26,13 @@ export abstract class EntityFactory<
 
     public get entities(): Map<string, TDef> {
         return this._entities;
+    }
+
+    public addRequiredAttribute(
+        type: keyof typeof this._requiredAttributes,
+        name: string
+    ): void {
+        this._requiredAttributes[type].add(name);
     }
 
     public addScriptListener(

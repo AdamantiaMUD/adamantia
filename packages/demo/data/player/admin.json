@@ -6,6 +6,10 @@
         "hp": {
             "delta": -6,
             "base": 999
+        },
+        "move": {
+            "delta": 0,
+            "base": 80
         }
     },
     "level": 1,

@@ -1,10 +1,9 @@
 import { sprintf } from 'sprintf-js';
+import type { RequiredDeep } from 'type-fest';
 
 import { hasValue } from '../util/functions.js';
-import type SimpleMap from '../util/simple-map.js';
 
 import type AttributeDefinition from './attribute-definition.js';
-import type AttributeFormulaDefinition from './attribute-formula-definition.js';
 import Attribute from './attribute.js';
 
 export class AttributeFactory {
@@ -43,18 +42,8 @@ export class AttributeFactory {
         return false;
     }
 
-    public add(
-        name: string,
-        base: number,
-        formula: AttributeFormulaDefinition | null = null,
-        metadata: SimpleMap = {}
-    ): void {
-        this._attributes.set(name, {
-            name,
-            base,
-            formula,
-            metadata,
-        });
+    public add(def: AttributeDefinition): void {
+        this._attributes.set(def.name, def);
     }
 
     public create(
@@ -86,6 +75,24 @@ export class AttributeFactory {
      */
     public get(name: string): AttributeDefinition | null {
         return this._attributes.get(name) ?? null;
+    }
+
+    public getRequiredAttributes(
+        kind: keyof RequiredDeep<AttributeDefinition['entityTypes']>
+    ): string[] {
+        return [...this._attributes].reduce<string[]>(
+            (
+                acc: string[],
+                [attrName, { entityTypes }]: [string, AttributeDefinition]
+            ) => {
+                if (entityTypes?.[kind] === 'required') {
+                    acc.push(attrName);
+                }
+
+                return acc;
+            },
+            []
+        );
     }
 
     public has(name: string): boolean {

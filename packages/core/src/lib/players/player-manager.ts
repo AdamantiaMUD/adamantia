@@ -90,6 +90,16 @@ export class PlayerManager extends MudEventEmitter {
             );
         }
 
+        const requiredAttributes =
+            this._state.attributeFactory.getRequiredAttributes('player');
+
+        for (const attr of requiredAttributes) {
+            if (typeof data.attributes[attr] === 'undefined') {
+                const attrDef = this._state.attributeFactory.get(attr)!;
+                data.attributes[attr] = { base: attrDef.base };
+            }
+        }
+
         const player = new Player();
 
         player.deserialize(data, this._state);

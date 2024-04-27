@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
 
+import type AttributeDefinition from './attributes/attribute-definition.js';
 import type BehaviorManager from './behaviors/behavior-manager.js';
 import type CommandDefinition from './commands/command-definition.js';
 import Command from './commands/command.js';
@@ -242,6 +243,30 @@ export class BundleManager {
         Logger.info(`LOAD: ${bundle} - Areas -- END`);
     }
 
+    private _loadAttribute(
+        def: AttributeDefinition,
+        bundle: string,
+        error: string
+    ): void {
+        if (typeof def !== 'object') {
+            Logger.error(`${error} not an object`);
+
+            return;
+        }
+
+        if (!('name' in def) || !('base' in def)) {
+            Logger.error(
+                `${error} does not include required properties name and base`
+            );
+
+            return;
+        }
+
+        Logger.verbose(`LOAD: ${bundle} - Attributes -> ${def.name}`);
+
+        this._state.attributeFactory.add(def);
+    }
+
     private async _loadAttributes(
         bundle: string,
         bundlePath: string
@@ -269,24 +294,7 @@ export class BundleManager {
         }
 
         for (const attribute of attributes) {
-            if (typeof attribute !== 'object') {
-                Logger.error(`${error} not an object`);
-            } else if (!('name' in attribute) || !('base' in attribute)) {
-                Logger.error(
-                    `${error} does not include required properties name and base`
-                );
-            } else {
-                Logger.verbose(
-                    `LOAD: ${bundle} - Attributes -> ${attribute.name}`
-                );
-
-                this._state.attributeFactory.add(
-                    attribute.name,
-                    attribute.base,
-                    attribute.formula ?? null,
-                    attribute.metadata
-                );
-            }
+            this._loadAttribute(attribute, bundle, error);
         }
 
         Logger.info(`LOAD: ${bundle} - Attributes -- END`);
@@ -560,7 +568,38 @@ export class BundleManager {
         );
 
         return Promise.all(
-            Object.values(entities).map(async (entity: EDef) => {
+            Object.values(entities).map(async (entityDef: EDef) => {
+                const entity = { ...entityDef };
+
+                if (type === 'npcs' || type === 'items') {
+                    const requiredAttributes =
+                        this._state.attributeFactory.getRequiredAttributes(
+                            type === 'npcs' ? 'npc' : 'item'
+                        );
+
+                    for (const attr of requiredAttributes) {
+                        if (
+                            typeof (entity as ScriptableEntityDefinition)
+                                .attributes === 'undefined'
+                        ) {
+                            (entity as ScriptableEntityDefinition).attributes =
+                                {};
+                        }
+
+                        if (
+                            typeof (entity as ScriptableEntityDefinition)
+                                .attributes![attr] === 'undefined'
+                        ) {
+                            (entity as ScriptableEntityDefinition).attributes![
+                                attr
+                            ] = {
+                                base: this._state.attributeFactory.get(attr)!
+                                    .base,
+                            };
+                        }
+                    }
+                }
+
                 const entityRef = EntityFactory.createRef(areaRef, entity.id);
 
                 factory.setDefinition(entityRef, entity);
@@ -978,15 +1017,6 @@ export class BundleManager {
         await this._loadCombatEngine(bundlesFolder);
 
         Logger.verbose('LOAD: BUNDLES -- END');
-
-        Logger.verbose('Area behaviors');
-        this._state.areaBehaviorManager.dump();
-        Logger.verbose('Item behaviors');
-        this._state.itemBehaviorManager.dump();
-        Logger.verbose('Mob behaviors');
-        this._state.mobBehaviorManager.dump();
-        Logger.verbose('Room behaviors');
-        this._state.roomBehaviorManager.dump();
 
         /*
          * Distribution is done after all areas are loaded in case items in one
