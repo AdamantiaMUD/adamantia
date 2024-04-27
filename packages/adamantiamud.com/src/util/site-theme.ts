@@ -8,25 +8,6 @@ import '@fontsource/roboto/700.css';
 
 /* eslint-enable import/no-unassigned-import */
 
-export interface OldSiteTheme {
-    colors: {
-        danger: string;
-        info: string;
-        navBg: string;
-        primary: string;
-        secondary: string;
-        success: string;
-        warning: string;
-    };
-    layout: {
-        contentMaxWidth: string;
-        gridGutter: string;
-        leftNavWidth: string;
-        siteFooterHeight: string;
-        siteNavHeight: string;
-    };
-}
-
 export interface SiteLayout {
     contentMaxWidth: string;
     gridGutter: string;
@@ -34,25 +15,6 @@ export interface SiteLayout {
     siteFooterHeight: string;
     siteNavHeight: string;
 }
-
-export const oldTheme: OldSiteTheme = {
-    colors: {
-        danger: '#a02a28',
-        info: '#009fc8',
-        navBg: '#e3e3e3',
-        primary: '#483d8b',
-        secondary: '#aeaeae',
-        success: '#73c800',
-        warning: '#c8a600',
-    },
-    layout: {
-        contentMaxWidth: 'calc(100% - 16rem)',
-        gridGutter: '1rem',
-        leftNavWidth: '16rem',
-        siteFooterHeight: '2rem',
-        siteNavHeight: '3rem',
-    },
-};
 
 export const siteLayout: SiteLayout = {
     contentMaxWidth: 'calc(100% - 16rem)',
@@ -65,5 +27,20 @@ export const siteLayout: SiteLayout = {
 export const theme = createTheme({
     palette: {
         mode: 'dark',
+        error: { main: '#a02a28' },
+        info: { main: '#009fc8' },
+        primary: { main: '#483d8b' },
+        secondary: { main: '#aeaeae' },
+        success: { main: '#73c800' },
+        warning: { main: '#c8a600' },
+    },
+    components: {
+        MuiLink: {
+            styleOverrides: {
+                root: ({ theme }) => ({
+                    color: theme.palette.primary.light,
+                }),
+            },
+        },
     },
 });

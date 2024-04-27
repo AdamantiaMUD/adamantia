@@ -8,15 +8,15 @@ import Footer from './footer';
 export const SiteContent: FC<PWC> = ({ children }: PWC) => {
     const { gridGutter, contentMaxWidth } = siteLayout;
 
-    const css = {
-        display: 'grid',
-        gridTemplateRows: `1fr min-content`,
-        overflow: 'auto',
-        padding: `${gridGutter} ${gridGutter} 0 ${gridGutter}`,
-    };
-
     return (
-        <Box sx={css}>
+        <Box
+            sx={{
+                display: 'grid',
+                gridTemplateRows: `1fr min-content`,
+                overflow: 'auto',
+                padding: `${gridGutter} ${gridGutter} 0 ${gridGutter}`,
+            }}
+        >
             <Box
                 component="main"
                 sx={{
