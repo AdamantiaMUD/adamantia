@@ -1,0 +1,26 @@
+{
+    "id": "r0212",
+    "title": "{yellow The City Dump}",
+    "description": "The makeshift path winds through the towering piles of {yellow garbage}, and you can't help but wonder just why you are here. {red Rats} scurry away when you get close, and the only other company you have is the occasional {gray zombie} dumping a bin of {yellow waste} onto one of the piles.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0208"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0224"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0213"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0211"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

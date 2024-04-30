@@ -1,0 +1,18 @@
+{
+    "id": "r0204",
+    "title": "{gray Deep in} {yellow the City Dump}",
+    "description": "You feel as though you've forgotten what {cyan fresh air} smells like. This section of the {yellow dump} is easily the most {magenta repulsive} thing you have ever experienced, and you are fairly certain you will be {red sick} if you do not leave soon.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0209"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0203"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

@@ -1,0 +1,22 @@
+{
+    "id": "r0112",
+    "title": "{yellowBright Market Way}",
+    "description": "This road is bustling with activity. Vendors selling everything from jewelry to fish to exotic spices from every corner of Pannotia are hawking their wares all about you. The sights and sounds are almost overwhelming. The sounds of a rowdy party stream from an open door to the north.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0099"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0113"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0111"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

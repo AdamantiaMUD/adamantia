@@ -1,0 +1,18 @@
+{
+    "id": "r0187",
+    "title": "{greenBright Emerald Way}",
+    "description": "It is immediately apparent that you are in the rich part of the city. Large houses sit well back from the street, and high iron gates keep out those the owners deem undesirable. The road is lined with flowering plants of many shapes and sizes.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0188"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0186"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

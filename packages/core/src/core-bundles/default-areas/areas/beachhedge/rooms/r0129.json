@@ -1,0 +1,22 @@
+{
+    "id": "r0129",
+    "title": "{blue Fountain Road} at the Southern Entrance to the {yellow Town Square}",
+    "description": "The street begins to widen here, opening onto a wide space filled with people. Zombie servants seem to be everywhere, performing various mundane tasks for their masters. Stalls and vendor carts form an unbroken line around the outer edge of the market, creating a vast shopping area for the citizens of Beachhedge.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0119"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0139"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0130"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

@@ -1,0 +1,26 @@
+{
+    "id": "r0190",
+    "title": "Where {greenBright Emerald Way} Crosses {blue Fountain Road}",
+    "description": "It is immediately apparent that you are in the rich part of the city. Large houses sit well back from the street, and high iron gates keep out those the owners deem undesirable. The road is lined with flowering plants of many shapes and sizes.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0180"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0198"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0191"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0189"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

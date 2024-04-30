@@ -1,0 +1,26 @@
+{
+    "id": "r0110",
+    "title": "{yellowBright Market Way} at the Eastern Entrance to the {yellow Town Square}",
+    "description": "The crowded market street begins to widen here, opening onto a wide space filled with people. Zombie servants seem to be everywhere, performing various mundane tasks for their masters. Stalls and vendor carts form an unbroken line around the outer edge of the market, creating a vast shopping area for the citizens of Beachhedge.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0098"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0121"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0111"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0109"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

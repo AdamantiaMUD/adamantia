@@ -1,0 +1,22 @@
+{
+    "id": "r0127",
+    "title": "Room 2",
+    "description": "Description for room 2",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0137"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0128"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0126"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

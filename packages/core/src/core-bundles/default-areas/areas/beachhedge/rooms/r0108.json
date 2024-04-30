@@ -1,0 +1,26 @@
+{
+    "id": "r0108",
+    "title": "The {blueBright Fountain} at the Center of {yellow Town Square}",
+    "description": "The {blueBright fountain} appears to be the focal point of the {yellow town square} and {green city market}. Children are playing in the {blue water}, and several citizens are resting on chairs around the prominent landmark, seemingly oblivious to the goings-on around them.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0096"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0119"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0109"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0107"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}

@@ -1,0 +1,26 @@
+{
+    "id": "r0044",
+    "title": "{blueBright The City Docks}",
+    "description": "The smell of fish is almost overwhelming. Through the {cyan mist} rolling in from the ocean, you can see dock workers milling about. Some are human, but the majority appear to be domesticated zombies, shuffling about like beasts of burden.",
+    "metadata": {},
+    "exits": [
+        {
+            "direction": "north",
+            "roomId": "beachhedge:r0030"
+        },
+        {
+            "direction": "south",
+            "roomId": "beachhedge:r0056"
+        },
+        {
+            "direction": "east",
+            "roomId": "beachhedge:r0045"
+        },
+        {
+            "direction": "west",
+            "roomId": "beachhedge:r0043"
+        }
+    ],
+    "npcs": [],
+    "items": []
+}
