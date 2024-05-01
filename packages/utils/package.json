@@ -1,0 +1,43 @@
+{
+    "name": "@adamantiamud/utils",
+    "version": "0.0.1-alpha.1",
+    "description": "Utility libraries and scripts for the AdamantiaMUD game engine and its monorepo",
+    "author": "Bill Parrott (https://chimericdream.com)",
+    "license": "MIT",
+    "repository": "github:adamantiamud/adamantia",
+    "bugs": "https://github.com/AdamantiaMUD/adamantia/issues",
+    "keywords": [],
+    "homepage": "https://github.com/AdamantiaMUD/adamantia/tree/main/packages/utils#readme",
+    "main": "build/index.js",
+    "typings": "build/index.d.ts",
+    "type": "module",
+    "files": [
+        "src/**/*",
+        "build/**/*",
+        "*.adoc"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "packageManager": "pnpm@9.0.2",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rimraf build",
+        "lint": "eslint src/**/*",
+        "lint:fix": "eslint src/**/* --fix",
+        "lint:quiet": "eslint src/**/* --quiet",
+        "postlint:fix": "prettier --write src",
+        "prebuild": "pnpm run clean",
+        "prepublishOnly": "pnpm run build",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "pnpm run type-check -- --watch"
+    },
+    "dependencies": {
+        "@adamantiamud/core": "workspace:*",
+        "type-fest": "4.15.0"
+    },
+    "devDependencies": {
+        "@types/cytoscape": "3.21.0",
+        "cytoscape": "3.29.2"
+    }
+}
