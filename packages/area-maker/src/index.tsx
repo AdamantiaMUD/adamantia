@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 
 import AreaCanvas from '~/components/canvas/area-canvas';
+import { AreaContextProvider } from '~/context/area-context';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -15,7 +16,9 @@ root.render(
     <React.StrictMode>
         <ThemeProvider theme={theme}>
             <RecoilRoot>
-                <AreaCanvas />
+                <AreaContextProvider>
+                    <AreaCanvas />
+                </AreaContextProvider>
             </RecoilRoot>
         </ThemeProvider>
     </React.StrictMode>

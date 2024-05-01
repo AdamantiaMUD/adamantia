@@ -21,5 +21,7 @@ module.exports = {
             version: 'detect',
         },
     },
-    rules: {},
+    rules: {
+        'react/require-default-props': 'off',
+    },
 };

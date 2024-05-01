@@ -1,3 +1,4 @@
+import type { RoomExitDefinition } from '@adamantiamud/core';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -5,12 +6,10 @@ import Typography from '@mui/material/Typography';
 import { createStyles, makeStyles } from '@mui/styles';
 import type { FC } from 'react';
 
-import AddRemoveExitButton from '~/components/control-panel/exits/add-remove-exit-button';
-import RoomExitDetails from '~/components/control-panel/exits/room-exit-details';
-import { ExitDirection, type RoomNode } from '~/interfaces';
+import { useAreaContext } from '~/context/area-context';
 
 interface ComponentProps {
-    room: RoomNode;
+    roomId: string;
 }
 
 const useStyles = makeStyles(() =>
@@ -24,79 +23,31 @@ const useStyles = makeStyles(() =>
     })
 );
 
-export const RoomExitList: FC<ComponentProps> = ({ room }: ComponentProps) => {
+export const RoomExitList: FC<ComponentProps> = ({
+    roomId,
+}: ComponentProps) => {
     const classes = useStyles();
+    const { rooms } = useAreaContext();
+
+    const exits = rooms[roomId].exits;
+    if ((exits ?? []).length === 0) {
+        return null;
+    }
 
     return (
         <List className={classes.root}>
-            <ListItem alignItems="flex-start">
-                <ListItemText
-                    disableTypography
-                    secondary={
-                        <RoomExitDetails
-                            direction={ExitDirection.NORTH}
-                            room={room}
-                        />
-                    }
-                >
-                    <Typography>North</Typography>
-                </ListItemText>
-                <AddRemoveExitButton
-                    direction={ExitDirection.NORTH}
-                    room={room}
-                />
-            </ListItem>
-            <ListItem alignItems="flex-start">
-                <ListItemText
-                    disableTypography
-                    secondary={
-                        <RoomExitDetails
-                            direction={ExitDirection.EAST}
-                            room={room}
-                        />
-                    }
-                >
-                    <Typography>East</Typography>
-                </ListItemText>
-                <AddRemoveExitButton
-                    direction={ExitDirection.EAST}
-                    room={room}
-                />
-            </ListItem>
-            <ListItem alignItems="flex-start">
-                <ListItemText
-                    disableTypography
-                    secondary={
-                        <RoomExitDetails
-                            direction={ExitDirection.SOUTH}
-                            room={room}
-                        />
-                    }
-                >
-                    <Typography>South</Typography>
-                </ListItemText>
-                <AddRemoveExitButton
-                    direction={ExitDirection.SOUTH}
-                    room={room}
-                />
-            </ListItem>
-            <ListItem alignItems="flex-start">
-                <ListItemText
-                    disableTypography
-                    secondary={
-                        <RoomExitDetails
-                            direction={ExitDirection.WEST}
-                            room={room}
-                        />
-                    }
-                >
-                    <Typography>West</Typography>
-                </ListItemText>
-                <AddRemoveExitButton
-                    direction={ExitDirection.WEST}
-                    room={room}
-                />
-            </ListItem>
+            {exits!.map((exit: RoomExitDefinition) => (
+                <ListItem key={exit.direction} alignItems="flex-start">
+                    <ListItemText
+                        disableTypography
+                        secondary={
+                            <Typography>{rooms[exit.roomId].title}</Typography>
+                        }
+                    >
+                        <Typography>{exit.direction}</Typography>
+                    </ListItemText>
+                </ListItem>
+            ))}
         </List>
     );
 };

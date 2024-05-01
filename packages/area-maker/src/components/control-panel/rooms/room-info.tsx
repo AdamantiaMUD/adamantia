@@ -1,9 +1,8 @@
 import type { RoomDefinition } from '@adamantiamud/core';
-import type { Theme } from '@mui/material';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { createStyles, makeStyles } from '@mui/styles';
 import { type Draft, produce } from 'immer';
 import {
     type ChangeEvent,
@@ -12,44 +11,18 @@ import {
     useMemo,
     useState,
 } from 'react';
-import { useRecoilValue } from 'recoil';
 
 import RoomExitList from '~/components/control-panel/exits/room-exit-list';
-import DeleteRoomButton from '~/components/control-panel/rooms/delete-room-button';
-import useUpdateRoom from '~/hooks/use-update-room';
-import type { RoomNode } from '~/interfaces';
-import { roomsList } from '~/state/rooms-state';
+import { useAreaContext } from '~/context/area-context';
 
 interface ComponentProps {
-    room: RoomNode;
+    roomId: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            '& > *': {
-                /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-                marginBottom: theme.spacing(2),
-            },
-            '& > *:last-child': {
-                marginBottom: 0,
-            },
-        },
-        btnWrapper: {
-            display: 'flex',
-            justifyContent: 'space-between',
-        },
-    })
-);
-
-export const RoomInfo: FC<ComponentProps> = ({ room }: ComponentProps) => {
-    const [roomData, setRoomData] = useState<RoomDefinition>(room.roomDef);
-    const classes = useStyles();
-
-    const rooms = useRecoilValue(roomsList);
-    const updateRoom = useUpdateRoom();
-
-    const { roomDef } = room;
+export const RoomInfo: FC<ComponentProps> = ({ roomId }: ComponentProps) => {
+    const { rooms } = useAreaContext();
+    const [roomData, setRoomData] = useState<RoomDefinition>(rooms[roomId]);
+    const roomDef = rooms[roomId];
 
     const isDirty = useMemo<boolean>(
         () =>
@@ -80,23 +53,26 @@ export const RoomInfo: FC<ComponentProps> = ({ room }: ComponentProps) => {
         [roomData, setRoomData]
     );
 
-    const saveChanges = useCallback(() => {
-        updateRoom(
-            produce(room, (draft: Draft<RoomNode>) => {
-                draft.roomDef.title = roomData.title;
-                draft.roomDef.description = roomData.description;
-            })
-        );
-    }, [room, roomData, updateRoom]);
+    /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+    const saveChanges = (): void => {};
+    /*
+     *const saveChanges = useCallback(() => {
+     *    updateRoom(
+     *        produce(room, (draft: Draft<RoomNode>) => {
+     *            draft.roomDef.title = roomData.title;
+     *            draft.roomDef.description = roomData.description;
+     *        })
+     *    );
+     *}, [room, roomData, updateRoom]);
+     */
 
-    /* eslint-disable jsx-a11y/no-autofocus */
     return (
-        <div className={classes.root}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <TextField
                 disabled
                 fullWidth
                 label="ID"
-                value={room.id}
+                value={roomId}
                 size="small"
             />
             <TextField
@@ -116,7 +92,7 @@ export const RoomInfo: FC<ComponentProps> = ({ room }: ComponentProps) => {
                 size="small"
                 onChange={setDescription}
             />
-            <div className={classes.btnWrapper}>
+            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                 <Button
                     disabled={!isDirty}
                     variant="contained"
@@ -126,19 +102,17 @@ export const RoomInfo: FC<ComponentProps> = ({ room }: ComponentProps) => {
                 >
                     Save
                 </Button>
-                <DeleteRoomButton />
-            </div>
-            {rooms.length > 1 && (
+            </Box>
+            {(roomData.exits ?? []).length > 1 && (
                 <>
                     <Typography variant="h6" component="h3" gutterBottom>
                         Exits
                     </Typography>
-                    <RoomExitList room={room} />
+                    <RoomExitList roomId={roomId} />
                 </>
             )}
-        </div>
+        </Box>
     );
-    /* eslint-enable jsx-a11y/no-autofocus */
 };
 
 export default RoomInfo;
