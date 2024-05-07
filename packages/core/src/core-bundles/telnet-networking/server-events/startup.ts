@@ -23,7 +23,7 @@ export const evt: MudEventListenerDefinition<[GameServerStartupPayload]> = {
             state: GameState
         ): MudEventListener<[GameServerStartupPayload]> =>
         (): void => {
-            const port = state.config.get('port.telnet', DEFAULT_TELNET_PORT);
+            const port = state.config.get('ports.telnet', DEFAULT_TELNET_PORT);
 
             /**
              * Effectively the 'main' game loop but not really because it's a REPL
