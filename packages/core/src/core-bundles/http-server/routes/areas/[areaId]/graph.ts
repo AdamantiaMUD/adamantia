@@ -31,7 +31,7 @@ const getAreaGraph = async (
         return;
     }
 
-    const generator = new AreaGraphGenerator(area);
+    const generator = new AreaGraphGenerator(area, mud.areaManager);
 
     await reply.send(generator.generate());
 };

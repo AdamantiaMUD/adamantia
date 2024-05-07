@@ -46,14 +46,18 @@ const CytoscapeCanvas: FC = () => {
         cyGraph.current.on('mouseover', 'node', (event: EventObjectNode) => {
             const node = event.target;
 
-            node.addClass('roomHover');
+            if (!node.hasClass('external')) {
+                node.addClass('roomHover');
+            }
         });
 
         /* eslint-disable-next-line prefer-arrow-callback */
         cyGraph.current.on('mouseout', 'node', (event: EventObjectNode) => {
             const node = event.target;
 
-            node.removeClass('roomHover');
+            if (!node.hasClass('external')) {
+                node.removeClass('roomHover');
+            }
         });
 
         /* eslint-disable-next-line prefer-arrow-callback */

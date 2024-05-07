@@ -2,6 +2,7 @@ import type { EdgeDefinition, ElementDefinition } from 'cytoscape';
 import type { PartialDeep } from 'type-fest';
 
 import {
+    AreaManager,
     Direction,
     type RoomDefinition,
     type RoomExitDefinition,
@@ -42,13 +43,15 @@ const checkRoom = (
 
 export class AreaGraphGenerator {
     private readonly _area: Area;
+    private readonly _areaManager: AreaManager;
     private readonly _rooms: Record<string, RoomDefinition> = {};
     private readonly _roomIds: string[] = [];
     private readonly _processedIds: string[] = [];
     private readonly _cyNodes: CyNode[] = [];
 
-    public constructor(area: Area) {
+    public constructor(area: Area, manager: AreaManager) {
         this._area = area;
+        this._areaManager = manager;
     }
 
     public generate(): AreaGraph {
@@ -95,7 +98,7 @@ export class AreaGraphGenerator {
     ): void {
         const room = this._rooms[roomId];
 
-        if (!checkRoom(room, roomId)) {
+        if (!this._isFromArea(roomId) || !checkRoom(room, roomId)) {
             return;
         }
 
@@ -121,11 +124,10 @@ export class AreaGraphGenerator {
                 target: targetId,
             },
             group: 'edges',
-            removed: false,
             selected: false,
             locked: false,
             grabbable: false,
-        } as EdgeDefinition);
+        });
 
         if (!this._processedIds.includes(targetId)) {
             this._processedIds.push(targetId);
@@ -141,6 +143,12 @@ export class AreaGraphGenerator {
                 group: 'nodes',
             };
 
+            if (!this._isFromArea(targetId)) {
+                targetData.data!.areaName = `to: ${this._getAreaName(targetId)}`;
+                targetData.selectable = false;
+                targetData.classes = 'external';
+            }
+
             switch (direction) {
                 case Direction.NORTH:
                     targetData.position = {
@@ -148,6 +156,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y - 20,
                     };
                     targetData.data!.layer = roomData.data.layer;
+                    targetData.data!.direction = 'north';
                     break;
                 case Direction.SOUTH:
                     targetData.position = {
@@ -155,6 +164,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y + 20,
                     };
                     targetData.data!.layer = roomData.data.layer;
+                    targetData.data!.direction = 'south';
                     break;
                 case Direction.EAST:
                     targetData.position = {
@@ -162,6 +172,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y,
                     };
                     targetData.data!.layer = roomData.data.layer;
+                    targetData.data!.direction = 'east';
                     break;
                 case Direction.WEST:
                     targetData.position = {
@@ -169,6 +180,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y,
                     };
                     targetData.data!.layer = roomData.data.layer;
+                    targetData.data!.direction = 'west';
                     break;
                 case Direction.UP:
                     targetData.position = {
@@ -176,6 +188,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y,
                     };
                     targetData.data!.layer = roomData.data.layer + 1;
+                    targetData.data!.direction = 'up';
                     break;
                 case Direction.DOWN:
                     targetData.position = {
@@ -183,6 +196,7 @@ export class AreaGraphGenerator {
                         y: roomData.position.y,
                     };
                     targetData.data!.layer = roomData.data.layer - 1;
+                    targetData.data!.direction = 'down';
                     break;
                 default:
                     break;
@@ -194,6 +208,21 @@ export class AreaGraphGenerator {
         }
 
         return null;
+    }
+
+    private _isFromArea(roomId: string): boolean {
+        return roomId.startsWith(this._area.entityReference);
+    }
+
+    private _getAreaName(roomId: string): string {
+        const areaRef = roomId.split(':')[0];
+        const area = this._areaManager.getArea(areaRef);
+
+        if (area === null) {
+            return 'Unknown area';
+        }
+
+        return area.name;
     }
 }
 

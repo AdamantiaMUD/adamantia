@@ -50,6 +50,63 @@ export const makeCytoscapeStyles = (layer: number): Stylesheet[] => [
         },
     },
     {
+        selector: `node[layer = ${layer}].external`,
+        style: {
+            label: 'data(areaName)',
+            'font-size': 16,
+            'z-index': 1001,
+            'text-background-color': '#aadbff',
+            'text-background-opacity': 1,
+            'text-background-padding': '1px',
+            'background-color': '#aadbff',
+            'border-color': '#aadbff',
+        },
+    },
+    {
+        selector: 'node[direction = "north"]',
+        style: {
+            'text-valign': 'top',
+            'text-halign': 'center',
+        },
+    },
+    {
+        selector: 'node[direction = "south"]',
+        style: {
+            'text-valign': 'bottom',
+            'text-halign': 'center',
+        },
+    },
+    {
+        selector: 'node[direction = "east"]',
+        style: {
+            'text-valign': 'center',
+            'text-halign': 'right',
+            'text-margin-x': -7,
+        },
+    },
+    {
+        selector: 'node[direction = "west"]',
+        style: {
+            'text-valign': 'center',
+            'text-halign': 'left',
+            'text-margin-x': 7,
+        },
+    },
+    {
+        selector: 'node[direction = "up"]',
+        style: {
+            'text-valign': 'center',
+            'text-halign': 'center',
+        },
+    },
+    {
+        selector: 'node[direction = "down"]',
+        style: {
+            'text-valign': 'center',
+            'text-halign': 'center',
+        },
+    },
+    {
         selector: `node[layer != ${layer}]`,
         style: {
             display: 'none',
