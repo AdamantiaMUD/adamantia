@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
+import { clone } from '../../../../../lib/util/objects.js';
 import {
     getRoomRequestParams,
     roomSchema,
@@ -20,7 +21,14 @@ const getRoomById = async (
         return;
     }
 
-    await reply.send(room.def);
+    const roomDef = clone(room.def);
+    const { exits } = roomDef;
+    roomDef.exits = (exits ?? []).map((exit) => ({
+        ...exit,
+        name: mud.roomManager.getRoom(exit.roomId)?.name ?? '!Missing Room!',
+    }));
+
+    await reply.send(roomDef);
 };
 
 const routes: FastifyPluginAsyncTypebox = async (app, opts) => {
