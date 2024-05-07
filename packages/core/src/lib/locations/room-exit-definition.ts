@@ -6,4 +6,8 @@ export interface RoomExitDefinition {
     roomId: string;
 }
 
+export interface AugmentedRoomExitDefinition extends RoomExitDefinition {
+    name: string;
+}
+
 export default RoomExitDefinition;

@@ -180,9 +180,15 @@ export type { AreaManifest } from './locations/area-manifest.js';
 export { Direction } from './locations/direction.js';
 export type { Door } from './locations/door.js';
 export { Room } from './locations/room.js';
-export type { RoomDefinition } from './locations/room-definition.js';
+export type {
+    AugmentedRoomDefinition,
+    RoomDefinition,
+} from './locations/room-definition.js';
 export type { RoomEntityDefinition } from './locations/room-entity-definition.js';
-export type { RoomExitDefinition } from './locations/room-exit-definition.js';
+export type {
+    AugmentedRoomExitDefinition,
+    RoomExitDefinition,
+} from './locations/room-exit-definition.js';
 export { RoomFactory } from './locations/room-factory.js';
 export { RoomManager } from './locations/room-manager.js';
 

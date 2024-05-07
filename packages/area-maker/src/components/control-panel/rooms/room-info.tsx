@@ -1,4 +1,4 @@
-import type { RoomDefinition } from '@adamantiamud/core';
+import type { AugmentedRoomDefinition } from '@adamantiamud/core';
 import { Box, Button, Divider, TextField, Typography } from '@mui/material';
 import { type Draft, produce } from 'immer';
 import {
@@ -19,8 +19,12 @@ export const RoomInfo: FC = () => {
 
     const { data, error, isFetching } = useRoom(selectedRoom);
 
-    const [roomData, setRoomData] = useState<RoomDefinition | null>(data);
-    const [roomDef, setRoomDef] = useState<RoomDefinition | null>(data);
+    const [roomData, setRoomData] = useState<AugmentedRoomDefinition | null>(
+        data
+    );
+    const [roomDef, setRoomDef] = useState<AugmentedRoomDefinition | null>(
+        data
+    );
 
     useEffect(() => {
         setRoomData(data);
@@ -41,7 +45,7 @@ export const RoomInfo: FC = () => {
     const setDescription = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             setRoomData(
-                produce(roomData, (draft: Draft<RoomDefinition>) => {
+                produce(roomData, (draft: Draft<AugmentedRoomDefinition>) => {
                     draft.description = event.target.value;
                 })
             );
@@ -52,7 +56,7 @@ export const RoomInfo: FC = () => {
     const setTitle = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             setRoomData(
-                produce(roomData, (draft: Draft<RoomDefinition>) => {
+                produce(roomData, (draft: Draft<AugmentedRoomDefinition>) => {
                     draft.title = event.target.value;
                 })
             );
