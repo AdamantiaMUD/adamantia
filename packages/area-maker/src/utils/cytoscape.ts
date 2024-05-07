@@ -63,21 +63,21 @@ export const makeCytoscapeStyles = (layer: number): Stylesheet[] => [
         },
     },
     {
-        selector: 'node[direction = "north"]',
+        selector: 'node[direction = "north"].external',
         style: {
             'text-valign': 'top',
             'text-halign': 'center',
         },
     },
     {
-        selector: 'node[direction = "south"]',
+        selector: 'node[direction = "south"].external',
         style: {
             'text-valign': 'bottom',
             'text-halign': 'center',
         },
     },
     {
-        selector: 'node[direction = "east"]',
+        selector: 'node[direction = "east"].external',
         style: {
             'text-valign': 'center',
             'text-halign': 'right',
@@ -85,7 +85,7 @@ export const makeCytoscapeStyles = (layer: number): Stylesheet[] => [
         },
     },
     {
-        selector: 'node[direction = "west"]',
+        selector: 'node[direction = "west"].external',
         style: {
             'text-valign': 'center',
             'text-halign': 'left',
@@ -93,14 +93,14 @@ export const makeCytoscapeStyles = (layer: number): Stylesheet[] => [
         },
     },
     {
-        selector: 'node[direction = "up"]',
+        selector: 'node[direction = "up"].external',
         style: {
             'text-valign': 'center',
             'text-halign': 'center',
         },
     },
     {
-        selector: 'node[direction = "down"]',
+        selector: 'node[direction = "down"].external',
         style: {
             'text-valign': 'center',
             'text-halign': 'center',

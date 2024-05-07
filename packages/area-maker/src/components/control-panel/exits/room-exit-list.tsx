@@ -25,7 +25,7 @@ export const RoomExitList: FC<ComponentProps> = ({ room }: ComponentProps) => {
     const classes = useStyles();
 
     const exits = room.exits;
-    if ((exits ?? []).length === 0) {
+    if (exits.length === 0) {
         return null;
     }
 
