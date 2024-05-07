@@ -1,7 +1,5 @@
-import type { RoomDefinition } from '@adamantiamud/core';
 import type { ElementDefinition } from 'cytoscape';
 import {
-    type ChangeEvent,
     type FC,
     type PropsWithChildren as PWC,
     createContext,
@@ -12,24 +10,27 @@ import {
     useState,
 } from 'react';
 
+import useAreaGraph from '~/hooks/use-area-graph';
+import type { AreaListItem } from '~/hooks/use-area-list';
+
+export type AreaGraph = ElementDefinition[];
+
 export interface AreaContextType {
-    name: string;
-    rooms: Record<string, RoomDefinition>;
+    area: AreaListItem | null;
     roomNodes: ElementDefinition[];
     layer: number;
     minMax: { min: number; max: number };
     handleLayerUp: () => void;
     handleLayerDown: () => void;
-    handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
     selectedRoom: string | null;
     setSelectedRoom: (roomId: string | null) => void;
+    setArea: (area: AreaListItem) => void;
 }
 
 const AreaContext = createContext<AreaContextType | null>(null);
 
 export const AreaContextProvider: FC<PWC> = ({ children }: PWC) => {
-    const [name, setName] = useState<string>('');
-    const [rooms, setRooms] = useState<Record<string, RoomDefinition>>({});
+    const [area, setArea] = useState<AreaListItem | null>(null);
     const [roomNodes, setRoomNodes] = useState<ElementDefinition[]>([]);
     const [layer, setLayer] = useState<number>(0);
     const [minMax, setMinMax] = useState<{ min: number; max: number }>({
@@ -37,6 +38,21 @@ export const AreaContextProvider: FC<PWC> = ({ children }: PWC) => {
         max: Infinity,
     });
     const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+
+    const { data, status } = useAreaGraph(area?.id ?? null);
+
+    useEffect(() => {
+        if (area === null || status !== 'success') {
+            return;
+        }
+
+        if (data === null) {
+            return;
+        }
+
+        setSelectedRoom(null);
+        setRoomNodes(data.graph);
+    }, [area, data, status]);
 
     const handleLayerUp = useCallback((): void => {
         setLayer((prev: number): number => {
@@ -55,29 +71,6 @@ export const AreaContextProvider: FC<PWC> = ({ children }: PWC) => {
             return prev - 1;
         });
     }, [minMax, setLayer]);
-
-    const handleFileChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>): void => {
-            const process = async (): Promise<void> => {
-                const file = e.target.files![0];
-                const text = await file.text();
-                const data = JSON.parse(text) as {
-                    name: string;
-                    rooms: Record<string, RoomDefinition>;
-                    nodes: ElementDefinition[];
-                };
-
-                setSelectedRoom(null);
-                setName(data.name);
-                setRoomNodes(data.nodes);
-                setRooms(data.rooms);
-            };
-
-            /* eslint-disable-next-line no-void */
-            void process();
-        },
-        [setName, setRoomNodes, setRooms]
-    );
 
     useEffect(() => {
         const [minimum, maximum] = roomNodes.reduce(
@@ -103,28 +96,26 @@ export const AreaContextProvider: FC<PWC> = ({ children }: PWC) => {
 
     const ctx = useMemo(
         () => ({
-            name,
-            rooms,
+            area,
             roomNodes,
             layer,
             minMax,
             handleLayerUp,
             handleLayerDown,
-            handleFileChange,
             selectedRoom,
             setSelectedRoom,
+            setArea,
         }),
         [
-            name,
-            rooms,
+            area,
             roomNodes,
             layer,
             minMax,
             handleLayerUp,
             handleLayerDown,
-            handleFileChange,
             selectedRoom,
             setSelectedRoom,
+            setArea,
         ]
     );
 

@@ -1,16 +1,7 @@
-import type { RoomExitDefinition } from '@adamantiamud/core';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import type { RoomDefinition, RoomExitDefinition } from '@adamantiamud/core';
+import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import type { FC } from 'react';
-
-import { useAreaContext } from '~/context/area-context';
-
-interface ComponentProps {
-    roomId: string;
-}
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -23,13 +14,14 @@ const useStyles = makeStyles(() =>
     })
 );
 
-export const RoomExitList: FC<ComponentProps> = ({
-    roomId,
-}: ComponentProps) => {
-    const classes = useStyles();
-    const { rooms } = useAreaContext();
+interface ComponentProps {
+    room: RoomDefinition;
+}
 
-    const exits = rooms[roomId].exits;
+export const RoomExitList: FC<ComponentProps> = ({ room }: ComponentProps) => {
+    const classes = useStyles();
+
+    const exits = room.exits;
     if ((exits ?? []).length === 0) {
         return null;
     }
@@ -40,9 +32,7 @@ export const RoomExitList: FC<ComponentProps> = ({
                 <ListItem key={exit.direction} alignItems="flex-start">
                     <ListItemText
                         disableTypography
-                        secondary={
-                            <Typography>{rooms[exit.roomId].title}</Typography>
-                        }
+                        secondary={<Typography>{exit.roomId}</Typography>}
                     >
                         <Typography>{exit.direction}</Typography>
                     </ListItemText>

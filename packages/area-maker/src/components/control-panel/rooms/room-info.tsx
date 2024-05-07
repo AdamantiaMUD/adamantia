@@ -1,35 +1,42 @@
 import type { RoomDefinition } from '@adamantiamud/core';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Box, Button, Divider, TextField, Typography } from '@mui/material';
 import { type Draft, produce } from 'immer';
 import {
     type ChangeEvent,
     type FC,
     useCallback,
+    useEffect,
     useMemo,
     useState,
 } from 'react';
 
 import RoomExitList from '~/components/control-panel/exits/room-exit-list';
 import { useAreaContext } from '~/context/area-context';
+import useRoom from '~/hooks/use-room';
 
-interface ComponentProps {
-    roomId: string;
-}
+export const RoomInfo: FC = () => {
+    const { selectedRoom } = useAreaContext();
 
-export const RoomInfo: FC<ComponentProps> = ({ roomId }: ComponentProps) => {
-    const { rooms } = useAreaContext();
-    const [roomData, setRoomData] = useState<RoomDefinition>(rooms[roomId]);
-    const roomDef = rooms[roomId];
+    const { data, error, isFetching } = useRoom(selectedRoom);
 
-    const isDirty = useMemo<boolean>(
-        () =>
+    const [roomData, setRoomData] = useState<RoomDefinition | null>(data);
+    const [roomDef, setRoomDef] = useState<RoomDefinition | null>(data);
+
+    useEffect(() => {
+        setRoomData(data);
+        setRoomDef(data);
+    }, [data]);
+
+    const isDirty = useMemo<boolean>(() => {
+        if (roomData === null || roomDef === null) {
+            return false;
+        }
+
+        return (
             roomData.title !== roomDef.title ||
-            roomData.description !== roomDef.description,
-        [roomData, roomDef]
-    );
+            roomData.description !== roomDef.description
+        );
+    }, [roomData, roomDef]);
 
     const setDescription = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -66,52 +73,67 @@ export const RoomInfo: FC<ComponentProps> = ({ roomId }: ComponentProps) => {
      *}, [room, roomData, updateRoom]);
      */
 
+    if (isFetching) {
+        return <Typography>Loading...</Typography>;
+    }
+
+    if (error !== null) {
+        return <Typography>Error: {error.message}</Typography>;
+    }
+
+    if (roomData === null || roomDef === null) {
+        return null;
+    }
+
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TextField
-                disabled
-                fullWidth
-                label="ID"
-                value={roomId}
-                size="small"
-            />
-            <TextField
-                fullWidth
-                label="Title"
-                value={roomData.title}
-                size="small"
-                onChange={setTitle}
-            />
-            <TextField
-                fullWidth
-                multiline
-                label="Description"
-                rows={4}
-                value={roomData.description}
-                variant="outlined"
-                size="small"
-                onChange={setDescription}
-            />
-            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-                <Button
-                    disabled={!isDirty}
-                    variant="contained"
-                    color="primary"
-                    onClick={saveChanges}
+        <>
+            <Divider />
+            <Typography variant="h5" component="h3" gutterBottom>
+                Selected Room
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <TextField
+                    disabled
+                    fullWidth
+                    label="ID"
+                    value={selectedRoom}
                     size="small"
-                >
-                    Save
-                </Button>
+                />
+                <TextField
+                    fullWidth
+                    label="Title"
+                    value={roomData.title}
+                    size="small"
+                    onChange={setTitle}
+                />
+                <TextField
+                    fullWidth
+                    multiline
+                    label="Description"
+                    rows={4}
+                    value={roomData.description}
+                    variant="outlined"
+                    size="small"
+                    onChange={setDescription}
+                />
+                <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Button
+                        disabled={!isDirty}
+                        variant="contained"
+                        color="primary"
+                        onClick={saveChanges}
+                        size="small"
+                    >
+                        Save
+                    </Button>
+                </Box>
+                <Typography variant="h6" component="h3" gutterBottom>
+                    Exits
+                </Typography>
+                <RoomExitList room={roomDef} />
             </Box>
-            {(roomData.exits ?? []).length > 1 && (
-                <>
-                    <Typography variant="h6" component="h3" gutterBottom>
-                        Exits
-                    </Typography>
-                    <RoomExitList roomId={roomId} />
-                </>
-            )}
-        </Box>
+        </>
     );
 };
 

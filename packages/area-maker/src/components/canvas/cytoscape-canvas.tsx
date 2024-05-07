@@ -1,7 +1,6 @@
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material';
 import cytoscape, {
     type Core as CytoscapeCore,
-    type ElementDefinition,
     type EventObjectNode,
 } from 'cytoscape';
 import { type FC, useEffect, useRef } from 'react';
@@ -9,22 +8,9 @@ import { type FC, useEffect, useRef } from 'react';
 import { useAreaContext } from '~/context/area-context';
 import { makeCytoscapeStyles } from '~/utils/cytoscape';
 
-export interface CytoscapeCanvasProps {
-    id: string;
-    className?: string;
-    data?: ElementDefinition[];
-    layer: number;
-}
-
-const defaultData: ElementDefinition[] = [];
-
-export const CytoscapeCanvas: FC<CytoscapeCanvasProps> = ({
-    id,
-    className = '',
-    data = defaultData,
-    layer,
-}: CytoscapeCanvasProps) => {
-    const { selectedRoom, setSelectedRoom } = useAreaContext();
+const CytoscapeCanvas: FC = () => {
+    const { layer, roomNodes, selectedRoom, setSelectedRoom } =
+        useAreaContext();
 
     const container = useRef<HTMLDivElement | null>(null);
     const cyGraph = useRef<CytoscapeCore | null>(null);
@@ -95,11 +81,11 @@ export const CytoscapeCanvas: FC<CytoscapeCanvasProps> = ({
     useEffect(() => {
         if (cyGraph.current !== null) {
             cyGraph.current.elements().remove();
-            cyGraph.current.add(data);
+            cyGraph.current.add(roomNodes);
             cyGraph.current.center();
             cyGraph.current.autolock(true);
         }
-    }, [data]);
+    }, [roomNodes]);
 
     useEffect(() => {
         if (cyGraph.current !== null) {
@@ -119,54 +105,9 @@ export const CytoscapeCanvas: FC<CytoscapeCanvasProps> = ({
                 backgroundColor: '#aadbff',
             }}
             ref={container}
-            id={id}
-            className={className}
+            id="mud"
         />
     );
 };
 
-/*
- *const upButton = document.getElementById('up-layer');
- *const downButton = document.getElementById('down-layer');
- *window.addEventListener('click', (e) => {
- *    const {target} = e;
- *
- *    if (target.id !== upButton.id && target.id !== downButton.id) {
- *        return;
- *    }
- *
- *    if (target.id === upButton.id) {
- *        if (currentLayer < maxLayer) {
- *            currentLayer++;
- *        }
- *    }
- *
- *    if (target.id === downButton.id) {
- *        if (currentLayer > minLayer) {
- *            currentLayer--;
- *        }
- *    }
- *
- *    upButton.disabled = false;
- *    downButton.disabled = false;
- *
- *    if (currentLayer === maxLayer) {
- *        upButton.disabled = true;
- *    }
- *
- *    if (currentLayer === minLayer) {
- *        downButton.disabled = true;
- *    }
- *
- *    layerDisplay.innerHTML = currentLayer;
- *});
- *
- *const fileSelector = document.getElementById('file-selector');
- *fileSelector.addEventListener('change', async (e) => {
- *    const file = e.target.files[0];
- *    const text = await file.text();
- *    const data = JSON.parse(text);
- *
- *    process(data);
- *});
- */
+export default CytoscapeCanvas;
