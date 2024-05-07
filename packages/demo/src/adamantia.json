@@ -10,6 +10,7 @@
         "startingRoom": "beachhedge:r0108"
     },
     "ports": {
+        "http": 4001,
         "telnet": 4000
     },
     "paths": {
