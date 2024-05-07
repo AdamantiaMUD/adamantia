@@ -15,6 +15,10 @@
         {
             "direction": "west",
             "roomId": "beachhedge:r0114"
+        },
+        {
+            "direction": "east",
+            "roomId": "wilderness:r0001"
         }
     ],
     "npcs": [],

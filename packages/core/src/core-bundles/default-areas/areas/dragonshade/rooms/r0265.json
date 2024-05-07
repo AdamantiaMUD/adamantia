@@ -16,6 +16,10 @@
             "direction": "east"
         },
         {
+            "roomId": "wilderness:r0020",
+            "direction": "west"
+        },
+        {
             "roomId": "dragonshade:r0309",
             "direction": "up"
         }
