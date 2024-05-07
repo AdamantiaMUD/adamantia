@@ -18,9 +18,6 @@ import {
 process.env.NODE_DEBUG = 'net';
 process.stdin.setEncoding('utf8');
 
-/* It's over 9000! */
-const DEFAULT_PORT = 9001;
-
 export default class AdamantiaServer {
     private readonly _config: Config;
     private readonly _program: Command;
@@ -33,11 +30,6 @@ export default class AdamantiaServer {
 
         this._program = new Command();
         this._program
-            .option(
-                '-p, --port [portNumber]',
-                `Port to host the server [${DEFAULT_PORT}]`,
-                String(this._config.get<number>('port', DEFAULT_PORT))
-            )
             .option('-v, --verbose', 'Verbose console logging.', true)
             .parse(process.argv);
     }
