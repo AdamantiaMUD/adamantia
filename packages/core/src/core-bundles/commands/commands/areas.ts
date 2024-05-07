@@ -15,11 +15,13 @@ export const cmd: CommandDefinitionFactory = {
             sayAt(player, '{red.bold ==================}');
             sayAt(player, '');
 
-            for (const [areaRef, area] of state.areaManager.areas) {
+            const areas = Object.entries(state.areaManager.areas);
+
+            for (const [areaRef, area] of areas) {
                 sayAt(player, ` * ${area.name} (${areaRef})`);
             }
 
-            sayAt(player, `${state.areaManager.areas.size} total`);
+            sayAt(player, `${areas.length} total`);
         },
 };
 
