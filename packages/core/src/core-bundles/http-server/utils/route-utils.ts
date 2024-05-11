@@ -1,41 +1,17 @@
-import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import { Type } from '@sinclair/typebox';
-import type { FastifyRequest } from 'fastify';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+
+import type { FastifyReply, FastifyRequest, RawServerDefault } from 'fastify';
 import { RouteGenericInterface } from 'fastify/types/route';
-import { ResolveFastifyRequestType } from 'fastify/types/type-provider';
 
-type AreaRequestParams = ResolveFastifyRequestType<
-    TypeBoxTypeProvider,
-    (typeof areaSchema)['schema'],
-    RouteGenericInterface
->['params'];
+export type AdamantiaReply<
+    RouteGeneric extends RouteGenericInterface = RouteGenericInterface,
+> = FastifyReply<
+    RawServerDefault,
+    IncomingMessage,
+    ServerResponse,
+    RouteGeneric | { Reply: { error: string } }
+>;
 
-type RoomRequestParams = ResolveFastifyRequestType<
-    TypeBoxTypeProvider,
-    (typeof roomSchema)['schema'],
-    RouteGenericInterface
->['params'];
-
-export const areaSchema = {
-    schema: {
-        params: Type.Object({
-            areaId: Type.String(),
-        }),
-    },
-};
-
-export const roomSchema = {
-    schema: {
-        params: Type.Object({
-            roomId: Type.String(),
-        }),
-    },
-};
-
-export const getAreaRequestParams = (
-    request: FastifyRequest
-): AreaRequestParams => request.params as AreaRequestParams;
-
-export const getRoomRequestParams = (
-    request: FastifyRequest
-): RoomRequestParams => request.params as RoomRequestParams;
+export type AdamantiaRequest<
+    RouteGeneric extends RouteGenericInterface = RouteGenericInterface,
+> = FastifyRequest<RouteGeneric>;

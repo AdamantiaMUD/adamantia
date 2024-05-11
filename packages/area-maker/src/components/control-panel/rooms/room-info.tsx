@@ -1,4 +1,4 @@
-import type { AugmentedRoomDefinition } from '@adamantiamud/core';
+import type { RoomDefinition } from '@adamantiamud/core';
 import { Box, Button, Divider, TextField, Typography } from '@mui/material';
 import { type Draft, produce } from 'immer';
 import {
@@ -13,18 +13,16 @@ import {
 import RoomExitList from '~/components/control-panel/exits/room-exit-list';
 import { useAreaContext } from '~/context/area-context';
 import useRoom from '~/hooks/use-room';
+import useUpdateRoom from '~/hooks/use-update-room';
 
 export const RoomInfo: FC = () => {
     const { selectedRoom } = useAreaContext();
 
     const { data, error, isFetching } = useRoom(selectedRoom);
+    const update = useUpdateRoom(selectedRoom);
 
-    const [roomData, setRoomData] = useState<AugmentedRoomDefinition | null>(
-        data
-    );
-    const [roomDef, setRoomDef] = useState<AugmentedRoomDefinition | null>(
-        data
-    );
+    const [roomData, setRoomData] = useState<RoomDefinition | null>(data);
+    const [roomDef, setRoomDef] = useState<RoomDefinition | null>(data);
 
     useEffect(() => {
         setRoomData(data);
@@ -45,7 +43,7 @@ export const RoomInfo: FC = () => {
     const setDescription = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             setRoomData(
-                produce(roomData, (draft: Draft<AugmentedRoomDefinition>) => {
+                produce(roomData, (draft: Draft<RoomDefinition>) => {
                     draft.description = event.target.value;
                 })
             );
@@ -56,7 +54,7 @@ export const RoomInfo: FC = () => {
     const setTitle = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             setRoomData(
-                produce(roomData, (draft: Draft<AugmentedRoomDefinition>) => {
+                produce(roomData, (draft: Draft<RoomDefinition>) => {
                     draft.title = event.target.value;
                 })
             );
@@ -65,17 +63,16 @@ export const RoomInfo: FC = () => {
     );
 
     /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-    const saveChanges = (): void => {};
-    /*
-     *const saveChanges = useCallback(() => {
-     *    updateRoom(
-     *        produce(room, (draft: Draft<RoomNode>) => {
-     *            draft.roomDef.title = roomData.title;
-     *            draft.roomDef.description = roomData.description;
-     *        })
-     *    );
-     *}, [room, roomData, updateRoom]);
-     */
+    const saveChanges = (): void => {
+        if (roomData === null) {
+            return;
+        }
+
+        update.mutate({
+            description: roomData.description,
+            title: roomData.title,
+        });
+    };
 
     if (isFetching) {
         return <Typography>Loading...</Typography>;
@@ -105,6 +102,7 @@ export const RoomInfo: FC = () => {
                     size="small"
                 />
                 <TextField
+                    disabled={update.isPending}
                     fullWidth
                     label="Title"
                     value={roomData.title}
@@ -112,6 +110,7 @@ export const RoomInfo: FC = () => {
                     onChange={setTitle}
                 />
                 <TextField
+                    disabled={update.isPending}
                     fullWidth
                     multiline
                     label="Description"
@@ -123,7 +122,7 @@ export const RoomInfo: FC = () => {
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                     <Button
-                        disabled={!isDirty}
+                        disabled={!isDirty || update.isPending}
                         variant="contained"
                         color="primary"
                         onClick={saveChanges}

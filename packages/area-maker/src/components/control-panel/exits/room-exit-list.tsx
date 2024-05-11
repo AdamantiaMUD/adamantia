@@ -1,7 +1,4 @@
-import type {
-    AugmentedRoomDefinition,
-    AugmentedRoomExitDefinition,
-} from '@adamantiamud/core';
+import type { RoomDefinition, RoomExitDefinition } from '@adamantiamud/core';
 import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import type { FC } from 'react';
@@ -18,24 +15,24 @@ const useStyles = makeStyles(() =>
 );
 
 interface ComponentProps {
-    room: AugmentedRoomDefinition;
+    room: RoomDefinition;
 }
 
 export const RoomExitList: FC<ComponentProps> = ({ room }: ComponentProps) => {
     const classes = useStyles();
 
     const exits = room.exits;
-    if (exits.length === 0) {
+    if ((exits?.length ?? 0) === 0) {
         return null;
     }
 
     return (
         <List className={classes.root}>
-            {exits.map((exit: AugmentedRoomExitDefinition) => (
+            {exits!.map((exit: RoomExitDefinition) => (
                 <ListItem key={exit.direction} alignItems="flex-start">
                     <ListItemText
                         disableTypography
-                        secondary={<Typography>{exit.name}</Typography>}
+                        secondary={<Typography>{exit.roomId}</Typography>}
                     >
                         <Typography>{exit.direction}</Typography>
                     </ListItemText>

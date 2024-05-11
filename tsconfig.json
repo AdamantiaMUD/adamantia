@@ -6,7 +6,7 @@
         "esModuleInterop": true,
         "isolatedModules": true,
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "Bundler",
         "resolveJsonModule": true,
         "sourceMap": true,
         "target": "ESNext",

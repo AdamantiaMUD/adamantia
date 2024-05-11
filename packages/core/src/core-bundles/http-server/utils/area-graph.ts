@@ -9,7 +9,7 @@ import {
 } from '../../../lib/index.js';
 import type Area from '../../../lib/locations/area.js';
 
-type AreaGraph = ElementDefinition[];
+export type AreaGraph = ElementDefinition[];
 
 interface RoomElementDefinition extends ElementDefinition {
     data: ElementDefinition['data'] & {

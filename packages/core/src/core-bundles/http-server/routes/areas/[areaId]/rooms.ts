@@ -1,17 +1,22 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import type { FastifyReply, FastifyRequest } from 'fastify';
 
-import {
-    areaSchema,
-    getAreaRequestParams,
+import type {
+    AdamantiaReply,
+    AdamantiaRequest,
 } from '../../../utils/route-utils.js';
 
+interface GetAreaRoomsRoute {
+    Params: {
+        areaId: string;
+    };
+}
+
 const getAreaRooms = async (
-    request: FastifyRequest,
-    reply: FastifyReply
+    request: AdamantiaRequest<GetAreaRoomsRoute>,
+    reply: AdamantiaReply<GetAreaRoomsRoute>
 ): Promise<void> => {
     const { mud } = request.server;
-    const params = getAreaRequestParams(request);
+    const { params } = request;
 
     const area = mud.areaManager.getArea(params.areaId);
     if (area === null) {
@@ -30,7 +35,7 @@ const getAreaRooms = async (
 };
 
 const routes: FastifyPluginAsyncTypebox = async (app, opts) => {
-    app.get('/', areaSchema, getAreaRooms);
+    app.get('/', getAreaRooms);
 };
 
 export default routes;

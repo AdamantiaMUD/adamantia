@@ -8,8 +8,20 @@
     "bugs": "https://github.com/AdamantiaMUD/adamantia/issues",
     "keywords": [],
     "homepage": "https://github.com/AdamantiaMUD/adamantia/tree/main/packages/core#readme",
-    "main": "build/index.js",
-    "typings": "build/index.d.ts",
+    "exports": {
+        ".": {
+            "import": {
+                "default": "./build/index.js",
+                "types": "./build/index.d.ts"
+            }
+        },
+        "./http": {
+            "import": {
+                "default": "./build/core-bundles/http-server/index.js",
+                "types": "./build/core-bundles/http-server/index.d.ts"
+            }
+        }
+    },
     "type": "module",
     "files": [
         "src/**/*",
