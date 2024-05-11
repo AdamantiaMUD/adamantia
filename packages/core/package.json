@@ -28,9 +28,8 @@
         "*.adoc"
     ],
     "engines": {
-        "node": ">=20"
+        "bun": ">=1"
     },
-    "packageManager": "pnpm@9.0.2",
     "scripts": {
         "lint": "bunx eslint src/**/*",
         "lint:fix": "bunx eslint src/**/* --fix",

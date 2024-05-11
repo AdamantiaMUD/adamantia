@@ -10,9 +10,8 @@
     "homepage": "https://github.com/AdamantiaMUD/adamantia/tree/main/packages/adamantiamud.com#readme",
     "type": "module",
     "engines": {
-        "node": ">=20"
+        "bun": ">=1"
     },
-    "packageManager": "pnpm@9.0.2",
     "scripts": {
         "build": "bunx tsc && bunx vite build",
         "dev": "bunx vite",
