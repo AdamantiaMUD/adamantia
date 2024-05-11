@@ -4,6 +4,7 @@ import type AreaManifest from './area-manifest.js';
 
 export interface AreaDefinition extends ScriptableEntityDefinition {
     bundle: string;
+    bundlePath: string;
     items: string[];
     manifest: AreaManifest;
     npcs: string[];

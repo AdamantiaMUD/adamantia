@@ -18,11 +18,11 @@ export const cmd: CommandDefinitionFactory = {
             );
             sayAt(player, '');
 
-            for (const [roomRef, room] of state.roomManager.rooms) {
+            for (const [roomRef, room] of state.roomManager.getAll()) {
                 sayAt(player, ` * ${room.name} (${roomRef})`);
             }
 
-            sayAt(player, `${state.roomManager.rooms.size} total`);
+            sayAt(player, `${state.roomManager.size()} total`);
         },
 };
 

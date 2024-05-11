@@ -284,7 +284,7 @@ export const cmd: CommandDefinitionFactory = {
             const roomExit = CommandParser.canGo(player, exitDirection);
 
             if (hasValue(roomExit)) {
-                const roomExitRoom = state.roomManager.getRoom(roomExit.roomId);
+                const roomExitRoom = state.roomManager.get(roomExit.roomId);
 
                 let doorRoom = player.room,
                     targetRoom = roomExitRoom,

@@ -54,11 +54,11 @@ export const evt: MudEventListenerDefinition<[Player, PlayerKilledPayload]> = {
             const waypoint = player.getMeta<string>('waypoint.home');
 
             let home = hasValue(waypoint)
-                ? state.roomManager.getRoom(waypoint)
+                ? state.roomManager.get(waypoint)
                 : null;
 
             if (!hasValue(home)) {
-                home = state.roomManager.getRoom(startingRoomRef);
+                home = state.roomManager.get(startingRoomRef);
             }
 
             player.moveTo(home!, () => {

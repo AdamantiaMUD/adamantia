@@ -179,6 +179,7 @@ export class BundleManager {
 
         const definition: AreaDefinition = {
             bundle: bundle,
+            bundlePath: bundlePath,
             id: areaRef,
             items: [],
             manifest: manifest,

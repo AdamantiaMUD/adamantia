@@ -92,7 +92,11 @@ export class Area extends ScriptableEntity implements Broadcastable {
             const room = state.roomFactory.create(roomRef, this);
 
             this.addRoom(room);
-            state.roomManager.addRoom(room);
+            state.roomManager.add(
+                room.entityReference,
+                room,
+                areaDef.bundlePath
+            );
             room.hydrate(state);
 
             /**

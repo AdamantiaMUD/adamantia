@@ -20,7 +20,7 @@ export const cmd: CommandDefinitionFactory = {
             }
 
             for (const exit of player.room.exits) {
-                const room = state.roomManager.getRoom(exit.roomId);
+                const room = state.roomManager.get(exit.roomId);
 
                 if (hasValue(room)) {
                     at(player, `(${exit.direction}) ${room.title}`);

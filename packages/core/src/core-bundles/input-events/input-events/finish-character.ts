@@ -33,7 +33,7 @@ export const evt: StreamEventListenerFactory<FinishCharacterPayload> = {
             args.account.addCharacter(args.name);
             args.account.save();
 
-            player.setRoom(state.roomManager.getRoom(startingRoomRef));
+            player.setRoom(state.roomManager.get(startingRoomRef));
 
             await state.playerManager.save(player);
 

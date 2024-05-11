@@ -89,7 +89,7 @@ const lookRoom = (state: GameStateData, player: Player): void => {
 
     const exitList: string = foundExits
         .map((exit: RoomExitDefinition): string => {
-            const exitRoom = state.roomManager.getRoom(exit.roomId);
+            const exitRoom = state.roomManager.get(exit.roomId);
             const door =
                 room.getDoor(exitRoom) ?? exitRoom?.getDoor(room) ?? null;
 

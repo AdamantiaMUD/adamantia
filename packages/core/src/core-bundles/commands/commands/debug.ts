@@ -16,10 +16,13 @@ export const cmd: CommandDefinitionFactory = {
             sayAt(player, '{red.bold ====================}');
             sayAt(player, '');
 
-            sayAt(player, `Area count: ${state.areaManager.areas.size}`);
+            sayAt(
+                player,
+                `Area count: ${Object.values(state.areaManager.areas).length}`
+            );
             sayAt(player, `Item count: ${state.itemManager.items.size}`);
             sayAt(player, `Mob count: ${state.mobManager.mobs.size}`);
-            sayAt(player, `Room count: ${state.roomManager.rooms.size}`);
+            sayAt(player, `Room count: ${state.roomManager.size()}`);
         },
 };
 

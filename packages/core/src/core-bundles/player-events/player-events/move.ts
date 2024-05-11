@@ -38,7 +38,7 @@ export const evt: PlayerEventListenerDefinition<PlayerMovePayload> = {
                 return;
             }
 
-            const nextRoom = state.roomManager.getRoom(roomExit.roomId);
+            const nextRoom = state.roomManager.get(roomExit.roomId);
             const oldRoom = player.room;
 
             const door: Door | null =

@@ -155,11 +155,11 @@ export abstract class Character
         this._name = data.name;
 
         if (hasValue(data.room)) {
-            this._room = state.roomManager.getRoom(data.room);
+            this._room = state.roomManager.get(data.room);
         } else {
             const startingRoom = state.config.getStartingRoom();
 
-            this._room = state.roomManager.getRoom(startingRoom);
+            this._room = state.roomManager.get(startingRoom);
         }
     }
 

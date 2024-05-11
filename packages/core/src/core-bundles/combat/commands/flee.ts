@@ -37,7 +37,7 @@ export const cmd: CommandDefinitionFactory = {
             }
 
             const randomRoom = hasValue(roomExit)
-                ? state.roomManager.getRoom(roomExit.roomId)
+                ? state.roomManager.get(roomExit.roomId)
                 : null;
 
             if (!hasValue(randomRoom)) {

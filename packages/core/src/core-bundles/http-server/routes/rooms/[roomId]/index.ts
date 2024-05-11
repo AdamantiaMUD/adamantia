@@ -14,7 +14,7 @@ const getRoomById = async (
     const { mud } = request.server;
     const params = getRoomRequestParams(request);
 
-    const room = mud.roomManager.getRoom(params.roomId);
+    const room = mud.roomManager.get(params.roomId);
     if (room === null) {
         await reply.status(404).send({ error: 'Room not found' });
 
@@ -25,7 +25,7 @@ const getRoomById = async (
     const { exits } = roomDef;
     roomDef.exits = (exits ?? []).map((exit) => ({
         ...exit,
-        name: mud.roomManager.getRoom(exit.roomId)?.name ?? '!Missing Room!',
+        name: mud.roomManager.get(exit.roomId)?.name ?? '!Missing Room!',
     }));
 
     await reply.send(roomDef);

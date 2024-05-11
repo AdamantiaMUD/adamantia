@@ -33,7 +33,7 @@ export const cmd: CommandDefinitionFactory = {
             let targetRoom: Room | null;
 
             if (isRoom) {
-                targetRoom = state.roomManager.getRoom(target);
+                targetRoom = state.roomManager.get(target);
 
                 if (!hasValue(targetRoom)) {
                     sayAt(player, 'No such room entity reference exists.');

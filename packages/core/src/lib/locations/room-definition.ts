@@ -2,10 +2,7 @@ import type ScriptableEntityDefinition from '../entities/scriptable-entity-defin
 
 import type Door from './door.js';
 import type RoomEntityDefinition from './room-entity-definition.js';
-import type {
-    AugmentedRoomExitDefinition,
-    RoomExitDefinition,
-} from './room-exit-definition.js';
+import type { RoomExitDefinition } from './room-exit-definition.js';
 
 export interface RoomDefinition extends ScriptableEntityDefinition {
     description: string;
@@ -18,10 +15,6 @@ export interface RoomDefinition extends ScriptableEntityDefinition {
 
     // @TODO: should this be an enum?
     type?: string;
-}
-
-export interface AugmentedRoomDefinition extends Omit<RoomDefinition, 'exits'> {
-    exits: AugmentedRoomExitDefinition[];
 }
 
 export default RoomDefinition;

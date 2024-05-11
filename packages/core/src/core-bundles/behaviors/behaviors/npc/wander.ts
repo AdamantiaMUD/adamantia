@@ -93,7 +93,7 @@ export const wander: BehaviorDefinition = {
                 }
 
                 const roomExit = random.pickone(exits);
-                const randomRoom = state.roomManager.getRoom(roomExit.roomId);
+                const randomRoom = state.roomManager.get(roomExit.roomId);
                 const door: Door | null = getDoor(npc, randomRoom);
 
                 if (door?.locked || door?.closed) {
