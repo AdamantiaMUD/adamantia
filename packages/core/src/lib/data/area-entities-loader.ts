@@ -1,8 +1,7 @@
 /* eslint-disable-next-line id-length */
-import type { Dirent } from 'fs';
-import path from 'path';
-
-import fs from 'fs-extra';
+import fs, { type Dirent } from 'node:fs';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 
 import type Config from '../util/config.js';
 
@@ -28,7 +27,7 @@ export class AreaEntitiesLoader extends BundleObjectLoader {
     }
 
     private static async _loadEntity<T>(filePath: string): Promise<T> {
-        const contents: string = await fs.readFile(filePath, 'utf8');
+        const contents: string = await fsp.readFile(filePath, 'utf8');
 
         return JSON.parse(contents) as T;
     }
@@ -58,7 +57,7 @@ export class AreaEntitiesLoader extends BundleObjectLoader {
 
         const entities: Record<string, T> = {};
 
-        const files: Dirent[] = await fs.readdir(folder, {
+        const files: Dirent[] = await fsp.readdir(folder, {
             withFileTypes: true,
         });
 

@@ -1,7 +1,7 @@
 /* eslint-disable-next-line id-length */
-import path from 'path';
-
-import fs from 'fs-extra';
+import fs from 'node:fs';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 
 import type SerializedAccount from '../players/serialized-account.js';
 import type Config from '../util/config.js';
@@ -21,7 +21,7 @@ export class AccountLoader {
             return null;
         }
 
-        const player: string = await fs.readFile(uri, 'utf8');
+        const player: string = await fsp.readFile(uri, 'utf8');
 
         return JSON.parse(player) as SerializedAccount;
     }
@@ -37,7 +37,7 @@ export class AccountLoader {
             `${accountName}.json`
         );
 
-        await fs.writeFile(uri, JSON.stringify(data, null, 2));
+        await fsp.writeFile(uri, JSON.stringify(data, null, 2));
     }
 }
 

@@ -5,16 +5,19 @@ import merge from 'deepmerge';
 
 import type { RoomDefinition } from '../../../../../lib/locations/room-definition.js';
 import { clone } from '../../../../../lib/util/objects.js';
+import type { AugmentedRoomDefinition } from '../../../types.js';
 import type {
     AdamantiaReply,
     AdamantiaRequest,
 } from '../../../utils/route-utils.js';
 
+export type GetRoomByIdResponse = AugmentedRoomDefinition;
+
 interface GetRoomByIdRoute {
     Params: {
         roomId: string;
     };
-    Reply: RoomDefinition;
+    Reply: GetRoomByIdResponse;
 }
 
 const getRoomById = async (
@@ -38,7 +41,7 @@ const getRoomById = async (
         name: mud.roomManager.get(exit.roomId)?.name ?? '!Missing Room!',
     }));
 
-    await reply.send(roomDef);
+    await reply.send(roomDef as GetRoomByIdResponse);
 };
 
 export type UpdateRoomByIdRequest = Partial<RoomDefinition>;

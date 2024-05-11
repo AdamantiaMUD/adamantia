@@ -1,10 +1,10 @@
 /* eslint-disable import/max-dependencies, no-await-in-loop */
 /* eslint-disable-next-line id-length */
-import type { Dirent } from 'fs';
-import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import fs, { type Dirent } from 'fs';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import fs from 'fs-extra';
 import yaml from 'js-yaml';
 
 import type AttributeDefinition from './attributes/attribute-definition.js';
@@ -50,7 +50,7 @@ const coreBundlesFolder = path.join(__dirname, '..', 'core-bundles');
 const optionalBundlesFolder = path.join(__dirname, '..', 'optional-bundles');
 
 const getDirectories = async (directory: string): Promise<string[]> => {
-    const files: Dirent[] = await fs.readdir(directory, {
+    const files: Dirent[] = await fsp.readdir(directory, {
         withFileTypes: true,
     });
 
@@ -60,7 +60,7 @@ const getDirectories = async (directory: string): Promise<string[]> => {
 };
 
 const getFiles = async (directory: string): Promise<string[]> => {
-    const files: Dirent[] = await fs.readdir(directory, {
+    const files: Dirent[] = await fsp.readdir(directory, {
         withFileTypes: true,
     });
 
@@ -678,13 +678,13 @@ export class BundleManager {
 
             const helpPath = path.join(uri, file);
 
-            let contents = await fs.readFile(helpPath, 'utf8');
+            let contents = await fsp.readFile(helpPath, 'utf8');
 
             if (contents.trim().endsWith('.yml')) {
                 const referencedPath = path.join(uri, contents.trim());
 
                 if (fs.existsSync(referencedPath)) {
-                    contents = await fs.readFile(referencedPath, 'utf8');
+                    contents = await fsp.readFile(referencedPath, 'utf8');
                 } else {
                     // @TODO: Error
                 }

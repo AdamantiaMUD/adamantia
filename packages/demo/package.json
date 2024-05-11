@@ -14,27 +14,17 @@
     },
     "packageManager": "pnpm@9.0.2",
     "scripts": {
-        "build": "tsc",
-        "clean": "rimraf build",
-        "lint": "eslint src/**/*",
-        "lint:fix": "eslint src/**/* --fix",
-        "lint:quiet": "eslint src/**/* --quiet",
-        "postbuild": "node scripts/copy-assets.cjs && copyfiles data/**/*.json build",
-        "postlint:fix": "prettier --write src",
-        "prebuild": "pnpm run clean",
-        "prestart": "pnpm run build",
-        "start": "node ./build/server.js",
+        "lint": "bunx eslint src/**/*",
+        "lint:fix": "bunx eslint src/**/* --fix",
+        "lint:quiet": "bunx eslint src/**/* --quiet",
+        "postlint:fix": "bunx prettier --write src",
+        "start": "bun ./src/server.ts",
         "type-check": "tsc --noEmit",
         "type-check:watch": "pnpm run type-check -- --watch"
     },
-    "main": "build/server.js",
+    "main": "src/server.ts",
     "dependencies": {
         "@adamantiamud/core": "workspace:*",
         "commander": "12.0.0"
-    },
-    "devDependencies": {
-        "@types/fs-extra": "11.0.4",
-        "copyfiles": "2.4.1",
-        "fs-extra": "11.2.0"
     }
 }

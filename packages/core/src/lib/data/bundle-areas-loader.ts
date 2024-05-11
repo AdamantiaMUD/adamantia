@@ -1,8 +1,7 @@
 /* eslint-disable-next-line id-length */
-import type { Dirent } from 'fs';
-import path from 'path';
-
-import fs from 'fs-extra';
+import fs, { type Dirent } from 'node:fs';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 
 import type AreaManifest from '../locations/area-manifest.js';
 import type Config from '../util/config.js';
@@ -17,7 +16,7 @@ export class BundleAreasLoader extends BundleObjectLoader {
     private static async _loadManifest(
         manifestPath: string
     ): Promise<AreaManifest> {
-        const rawManifest: string = await fs.readFile(manifestPath, 'utf8');
+        const rawManifest: string = await fsp.readFile(manifestPath, 'utf8');
 
         return JSON.parse(rawManifest) as AreaManifest;
     }
@@ -38,7 +37,7 @@ export class BundleAreasLoader extends BundleObjectLoader {
         const bundleFolder = this._getBundleFolder(config);
         const areasFolder = path.join(bundleFolder, 'areas');
 
-        const files: Dirent[] = await fs.readdir(areasFolder, {
+        const files: Dirent[] = await fsp.readdir(areasFolder, {
             withFileTypes: true,
         });
 

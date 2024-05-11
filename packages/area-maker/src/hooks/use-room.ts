@@ -1,9 +1,9 @@
-import type { RoomDefinition } from '@adamantiamud/core';
+import type { AugmentedRoomDefinition } from '@adamantiamud/core/http';
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import axios, { type AxiosResponse } from 'axios';
 
 export interface UseRoomResult {
-    data: RoomDefinition | null;
+    data: AugmentedRoomDefinition | null;
     error: Error | null;
     isFetching: boolean;
     isPending: boolean;
@@ -16,8 +16,12 @@ const useRoom = (id: string | null): UseRoomResult => {
         queryKey: ['rooms', id],
         queryFn: async () =>
             axios
-                .get<RoomDefinition>(`http://localhost:4001/rooms/${id!}`)
-                .then((res: AxiosResponse<RoomDefinition>) => res.data),
+                .get<AugmentedRoomDefinition>(
+                    `http://localhost:4001/rooms/${id!}`
+                )
+                .then(
+                    (res: AxiosResponse<AugmentedRoomDefinition>) => res.data
+                ),
         retryOnMount: false,
     });
 

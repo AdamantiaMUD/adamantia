@@ -14,13 +14,13 @@
     },
     "packageManager": "pnpm@9.0.2",
     "scripts": {
-        "build": "tsc && vite build",
-        "dev": "vite",
-        "lint": "eslint src/**/*",
-        "lint:fix": "eslint src/**/* --fix",
-        "lint:quiet": "eslint src/**/* --quiet",
-        "postlint:fix": "prettier --write src",
-        "preview": "vite preview"
+        "build": "bunx tsc && bunx vite build",
+        "dev": "bunx vite",
+        "lint": "bunx eslint src/**/*",
+        "lint:fix": "bunx eslint src/**/* --fix",
+        "lint:quiet": "bunx eslint src/**/* --quiet",
+        "postlint:fix": "bunx prettier --write src",
+        "preview": "bunx vite preview"
     },
     "dependencies": {
         "@emotion/react": "11.11.4",
