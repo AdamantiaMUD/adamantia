@@ -24,7 +24,7 @@ export const AreaSelector: FC = () => {
     };
 
     return (
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small" sx={{ marginTop: 2 }}>
             <InputLabel id="select-area-label">Select Area</InputLabel>
             <Select
                 disabled={isPending || isFetching}

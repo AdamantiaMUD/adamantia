@@ -1,7 +1,7 @@
 {
     "id": "r0005",
-    "title": "Room 5",
-    "description": "This is the description for Room 5",
+    "title": "West side of the square",
+    "description": "As you enter the main city square, you are greeted by the sight of a bustling marketplace teeming with life and energy. The square is alive with the sound of laughter and chatter, as people from all walks of life come together to buy, sell, and trade. At the center of it all stands a magnificent fountain, its waters shimmering in the sunlight as it dances and plays across the surface. Children splash and play in the fountain's spray, while their parents watch indulgently from nearby benches. Merchants hawk their wares from colorful stalls, while performers entertain the crowds with music and dance. A group of guards stands watch at the edge of the square, their eyes sharp and vigilant as they keep a watchful eye on the bustling activity.",
     "exits": [
         {
             "roomId": "dragonshade:r0002",

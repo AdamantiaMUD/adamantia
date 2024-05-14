@@ -1,10 +1,12 @@
 {
     "id": "r0001",
-    "title": "Room 1",
-    "description": "This is the description for Room 1",
+    "title": "Center of the city square",
+    "description": "At the heart of the city square stands a magnificent fountain, its marble statues depicting mythical creatures and heroic figures. Water cascades down into the basin below, catching the sunlight and casting rainbow-hued reflections across the cobblestone streets. Around the fountain, intricately carved benches offer respite to weary travelers, while children play and laughter fills the air. Merchants ply their trade from colorful stalls, their wares tempting passersby with exotic spices and treats. Coins glint in the fountain's waters, tossed in by hopeful visitors in search of luck. Surrounding the fountain, the square bustles with activity, its streets alive with music and conversation. It serves as the vibrant heart of the city, a place where people come together to celebrate and socialize.",
     "script": "r0001",
     "metadata": {
-        "commands": ["begin"]
+        "commands": [
+            "begin"
+        ]
     },
     "exits": [
         {

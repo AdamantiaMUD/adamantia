@@ -1,7 +1,7 @@
 {
     "id": "r0002",
-    "title": "Room 2",
-    "description": "This is the description for Room 2",
+    "title": "In front of city hall",
+    "description": "Just northwest of the fountain, a cluster of imposing buildings stands sentinel over the square, their facades adorned with grand arches and ornate carvings. City Hall looms large at the center, its towering spires reaching skyward as if to touch the heavens. Government officials come and go, their faces drawn and weary from the rigors of bureaucracy. Clerks scurry about with armfuls of paperwork, while messengers dart in and out of the building on urgent errands. The air is thick with the scent of parchment and ink, as the business of governance carries on amidst the bustling activity of the square.",
     "exits": [
         {
             "roomId": "dragonshade:r0005",

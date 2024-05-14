@@ -62,7 +62,9 @@ const updateRoomById = async (
     const { mud } = request.server;
     const { params } = request;
 
-    const room = mud.roomManager.get(params.roomId);
+    const manager = mud.roomManager;
+
+    const room = manager.get(params.roomId);
     if (room === null) {
         await reply.status(404).send({ error: 'Room not found' });
 
@@ -71,7 +73,10 @@ const updateRoomById = async (
 
     const roomDef = request.body;
     const updatedDef = merge(room.def, roomDef);
-    const filePath = mud.roomManager.getPath(params.roomId)!;
+    const filePath = manager.getPath(params.roomId)!;
+
+    manager.updateTitle(params.roomId, updatedDef.title);
+    manager.updateDescription(params.roomId, updatedDef.description);
 
     await fs.writeFile(filePath, JSON.stringify(updatedDef, null, 4));
 

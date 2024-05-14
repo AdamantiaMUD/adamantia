@@ -45,6 +45,10 @@ export abstract class GameEntity
         return this._name;
     }
 
+    public updateDescription(description: string): void {
+        this._description = description;
+    }
+
     public deserialize(
         data?: SerializedGameEntity,
         state: GameStateData | null = null

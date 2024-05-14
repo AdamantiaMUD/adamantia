@@ -1,7 +1,7 @@
 {
     "id": "r0003",
-    "title": "Room 3",
-    "description": "This is the description for Room 3",
+    "title": "North of the fountain",
+    "description": "In the northern part of the square are a variety of quaint cafés and bustling restaurants, their outdoor seating spilling out onto the square. Patrons sit at wrought-iron tables, sipping steaming cups of coffee and nibbling on freshly baked pastries as they watch the world go by. Waiters bustle about, carrying trays laden with food and drink, while chefs toil away in cramped kitchens preparing culinary delights. You can hear the clink of silverware and the murmur of conversation as diners enjoy their meals, their laughter mingling with the strains of music from nearby street performers.",
     "exits": [
         {
             "roomId": "dragonshade:r0001",

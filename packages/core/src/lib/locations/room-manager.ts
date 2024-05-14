@@ -14,6 +14,24 @@ export class RoomManager implements BundleEntityManager<Room> {
         string
     >();
 
+    public updateTitle(ref: string, title: string): void {
+        const room = this._rooms.get(ref);
+        if (room === undefined) {
+            return;
+        }
+
+        room.title = title;
+    }
+
+    public updateDescription(ref: string, description: string): void {
+        const room = this._rooms.get(ref);
+        if (room === undefined) {
+            return;
+        }
+
+        room.updateDescription(description);
+    }
+
     public getAll(): Map<string, Room> {
         return this._rooms;
     }

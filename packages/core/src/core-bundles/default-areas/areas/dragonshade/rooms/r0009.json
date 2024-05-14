@@ -1,7 +1,7 @@
 {
     "id": "r0009",
-    "title": "Room 9",
-    "description": "This is the description for Room 9",
+    "title": "South of the fountain",
+    "description": "In the southern part of the square, colorful market stalls line the cobblestone streets, their awnings fluttering in the gentle breeze. Merchants call out to passersby, extolling the virtues of their goods and offering samples to entice potential customers. You can see people browsing through the stalls, inspecting the wares and haggling over prices. Some carry baskets laden with fresh produce, while others clutch tightly to their purses as they navigate the crowded thoroughfare. The air is thick with the scent of spices and exotic perfumes, adding to the vibrant tapestry of sights and sounds that fills the square.",
     "exits": [
         {
             "roomId": "dragonshade:r0006",

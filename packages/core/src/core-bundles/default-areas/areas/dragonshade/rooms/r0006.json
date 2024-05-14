@@ -1,7 +1,7 @@
 {
     "id": "r0006",
-    "title": "Room 6",
-    "description": "This is the description for Room 6",
+    "title": "East side of the square",
+    "description": "You step into the main city square, a bustling hub of activity and commerce at the heart of the city. The square is abuzz with the sound of vendors hawking their wares, and the scent of freshly baked bread and roasting meats fills the air. At the center of the square stands a majestic fountain, its marble statues gleaming in the sunlight as water cascades down into the basin below. People mill about, going about their daily business, while children splash and play in the cool waters of the fountain. Merchants peddle their goods from colorful stalls, while beggars ply their trade on the street corners. You can see a group of musicians setting up on a nearby stage, their instruments gleaming in the sunlight as they prepare to entertain the crowds.",
     "exits": [
         {
             "roomId": "dragonshade:r0004",

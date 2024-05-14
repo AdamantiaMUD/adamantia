@@ -1,7 +1,7 @@
 {
     "id": "r0007",
-    "title": "Room 7",
-    "description": "This is the description for Room 7",
+    "title": "The city stage",
+    "description": "In the southwest part of the square, a raised platform has been erected, its surface adorned with colorful banners and streamers. Musicians and performers gather on the stage, their instruments tuned and their costumes sparkling in the sunlight. A crowd begins to gather, drawn by the promise of entertainment and diversion. You can hear the strains of music and the sound of laughter as the performers launch into their routines, their voices rising and falling in a symphony of sound. Children dance and clap along to the beat, their faces lit up with excitement and joy as they revel in the spectacle before them.",
     "exits": [
         {
             "roomId": "dragonshade:r0005",

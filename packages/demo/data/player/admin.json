@@ -3,18 +3,18 @@
     "metadata": {},
     "behaviors": {},
     "attributes": {
-        "hp": {
+        "unknown:hp": {
             "delta": -6,
             "base": 999
         },
-        "move": {
+        "unknown:move": {
             "delta": 0,
             "base": 80
         }
     },
     "level": 1,
     "name": "Admin",
-    "room": "dragonshade:r0001",
+    "room": "dragonshade:r0002",
     "experience": 150,
     "prompt": "> ",
     "role": 2
