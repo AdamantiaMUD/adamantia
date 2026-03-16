@@ -4,88 +4,144 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AdamantiaMUD is a modern MUD (Multi-User Dungeon) game engine built with TypeScript and Bun. It follows a monorepo structure with workspace packages and uses a bundle-based architecture for modular game features.
+AdamantiaMUD is a modern MUD (Multi-User Dungeon) game engine built with TypeScript and Bun. It follows a monorepo structure and uses a bundle-based architecture for modular game features.
 
 ## Development Commands
 
-**Root Level Commands:**
-- `bun run lint` - Lint all packages in the workspace
-- `bun run lint:fix` - Auto-fix linting issues across all packages  
+**Root Level (workspace-wide):**
+- `bun run lint` / `bun run lint:fix` - Lint all packages
 - `bun run test` - Run tests for all packages
 - `bun run type-check` - Type check all packages
-- `bun run start` - Start the demo server (`@adamantiamud/demo`)
+- `bun run start` - Start the demo server
 
-**Package-Level Commands (run from individual package directories):**
-- `bunx eslint src/**/*` - Lint package source code
-- `bunx eslint src/**/* --fix` - Auto-fix linting issues
+**Package Level (run from individual package directories):**
 - `bunx jest --config ./jest.config.cjs --coverage` - Run tests with coverage
-- `bunx tsc --noEmit` - Type check without emitting files
-- `bun ./src/server.ts` - Start demo server directly
+- `bunx jest --config ./jest.config.cjs --testPathPattern=<pattern>` - Run a single test file
+- `bunx tsc --noEmit` - Type check
+- `bunx eslint src/**/* --fix` - Auto-fix linting
+
+**Testing notes:** Tests live in `packages/core/test/` (not colocated with source). Jest uses `ts-jest` with module name mapping for path aliases. Coverage excludes `index.ts` files.
 
 ## Architecture
 
 ### Monorepo Structure
-- **packages/core** - Main game engine library with all core systems
-- **packages/demo** - Example MUD implementation demonstrating the engine
-- **packages/adamantiamud.com** - Website/documentation package
+- **packages/core** - Main game engine library (`@adamantiamud/core`)
+- **packages/demo** - Example MUD implementation — primary reference for usage
+- **packages/adamantiamud.com** - Website/documentation
 - **packages/area-maker** - Area creation tools
 
-### Core Architecture (packages/core/src/)
+### Startup Flow
 
-The engine is organized into domain-specific modules:
+```
+AdamantiaServer (server.ts)
+  → creates GameState
+  → creates BundleManager
+  → BundleManager.loadBundles()
+      1. core-bundles/ (prefix "core.")    — always loaded
+      2. optional-bundles/ (prefix "adamantia.") — conditional
+      3. custom game bundles (from adamantia.json config)
+  → GameServer fires startup event
+  → game loop tickers start (100ms interval)
+```
 
-**Core Systems:**
-- `lib/game-server.js` - Main game server orchestration
-- `lib/game-state.js` - Global game state management  
-- `lib/bundle-manager.js` - Loads and manages modular game bundles
+The demo server reads `packages/demo/src/adamantia.json` for its config and loads bundles from `packages/demo/src/bundles/`.
 
-**Key Domains:**
-- `abilities/` - Player/NPC abilities and skills system
+### GameState — Central Hub
+
+`GameState` (`lib/game-state.ts`) holds all runtime managers and factories. Every bundle module receives `state: GameState` to access dependencies. Key members:
+- **Managers:** `accountManager`, `playerManager`, `areaManager`, `roomManager`, `mobManager`, `itemManager`, `commandManager`, `channelManager`, `helpManager`, `partyManager`, `skillManager`, `spellManager`, `questManager`, `effectFactory`
+- **Behavior managers** (by entity type): `areaBehaviorManager`, `mobBehaviorManager`, `itemBehaviorManager`, `roomBehaviorManager`
+- **Factories:** `attributeFactory`, `itemFactory`, `mobFactory`, `roomFactory`, `areaFactory`
+- **Event managers:** `serverEventManager` (game startup/shutdown), `streamEventManager` (network/input)
+
+### Core Engine Domains (`packages/core/src/lib/`)
+
+- `abilities/` - Player/NPC skills and spells system
 - `attributes/` - Character stats and attribute formulas
 - `behaviors/` - Entity behavior scripts and AI
 - `characters/` - Base character functionality shared by players/NPCs
+- `classes/` - Character class definitions
 - `combat/` - Combat engine, damage calculations, loot tables
-- `commands/` - Game command system and parser
-- `communication/` - Player messaging, channels, broadcasts
-- `data/` - Data loading and serialization utilities
-- `effects/` - Temporary effects and buffs/debuffs
-- `equipment/` - Items, inventory, and equipment systems
-- `locations/` - Areas, rooms, and world geography
+- `commands/` - Command system and parser
+- `communication/` - Channels, messaging, broadcasts
+- `effects/` - Temporary buffs/debuffs
+- `equipment/` - Items, inventory, equipment slots
+- `events/` - MudEvent and StreamEvent base types
+- `groups/` - Party system
+- `help/` - Help file management
+- `locations/` - Areas, rooms, world geography
 - `mobs/` - NPC management and spawning
 - `players/` - Player accounts and character management
 - `quests/` - Quest system and goal tracking
+- `module-helpers/` - TypeScript interfaces for bundle module exports
 
 ### Bundle System
 
-Game features are organized as bundles in `core-bundles/`:
-- `behaviors/` - Entity behavior definitions
-- `combat/` - Combat-related commands and mechanics
-- `commands/` - Core game commands with help files
-- `default-areas/` - Starter game world areas
-- `http-server/` - HTTP API endpoints (exported as `@adamantiamud/core/http`)
+A bundle is a directory with subdirectories whose names determine what gets loaded. BundleManager loads each supported folder:
 
-Each bundle contains commands, help files, areas, or other game content that gets loaded by the BundleManager.
+| Folder | Exports | Notes |
+|---|---|---|
+| `commands/` | `CommandModule` | One file per command |
+| `behaviors/area/`, `behaviors/npc/`, etc. | `BehaviorModule` | Subdirs by entity type |
+| `effects/` | `EffectModule` | |
+| `attributes.js` | Array of `AttributeDefinition` | Single file export |
+| `areas/` | Area JSON + manifest | `manifest.json` required |
+| `input-events/` | `InputEventModule` | Login/connection flow |
+| `player-events/` | `PlayerEventModule` | |
+| `server-events/` | `ServerEventModule` | |
+| `quest-goals/`, `quest-rewards/`, `quests/` | Quest modules | |
 
-## Technology Stack
+All module factory functions receive `state: GameState` as their argument.
 
-- **Runtime:** Bun (requires Bun >= 1.0)
-- **Language:** TypeScript with ESNext modules
-- **Testing:** Jest with coverage reporting
-- **Linting:** ESLint with custom configurations
-- **Networking:** WebSocket (ws) and Fastify for HTTP
-- **Data:** File-based JSON storage for areas/entities
+### Command Structure
 
-## Key Entry Points
+Each command file exports a `CommandModule`:
+```typescript
+export const name = 'look'
+export const aliases = ['l', 'examine']
+export const usage = 'look [target]'
+export const listener = (state: GameState): CommandExecutable => (args, player) => { ... }
+// optional:
+export const requiredRole = PlayerRole.Admin
+```
 
-- `packages/core/src/index.ts` - Main library exports
-- `packages/core/src/server.ts` - AdamantiaServer class
-- `packages/demo/src/server.ts` - Demo MUD server
-- `packages/core/src/core-bundles/http-server/index.ts` - HTTP API module
+Help files for commands are YAML files alongside the command implementation.
 
-## Development Notes
+### Configuration (`adamantia.json`)
 
-- All packages use Bun as the package manager and runtime
-- The project uses workspace dependencies (`workspace:*`)
-- Core game logic is in TypeScript with strict type checking enabled
-- Game data (areas, NPCs, items) is stored as JSON files
-- Commands include both implementation and YAML help files
+```json
+{
+  "bundles": ["adamantia.simple-combat", "my-bundle"],
+  "combatEngine": "adamantia.simple-combat",
+  "logfile": "server.log",
+  "players": { "startingRoom": "area-name:roomId" },
+  "ports": { "telnet": 4000, "http": 4001 },
+  "paths": {
+    "data": "[ROOT]/../data",
+    "bundles": "[ROOT]/bundles"
+  }
+}
+```
+
+`[ROOT]` is a path placeholder resolved relative to the config file location.
+
+### Networking
+
+- **Telnet** (`core-bundles/telnet-networking/`) — primary game transport; default port 4000
+- **HTTP/REST** (`core-bundles/http-server/`) — Fastify API, exported as `@adamantiamud/core/http`; default port 4001
+- **WebSocket** (`optional-bundles/websocket-networking/`) — alternative transport, not enabled in demo by default
+
+### Area Data Format
+
+Areas live in `areas/` inside a bundle. Each area needs:
+- `manifest.json` — `{ "name": "Area Name" }`
+- `rooms/` — room definition JSON files
+
+Items, NPCs, and quests are also defined as JSON within the area directory. After all bundles load, BundleManager calls a hydration pass to resolve cross-references.
+
+### TypeScript Conventions
+
+- Strict mode, ESNext modules, bundler module resolution
+- All bundle module types are defined in `lib/module-helpers/`
+- Path aliases configured in `tsconfig.json` and mirrored in `jest.config.cjs`
+- 4-space indentation, single quotes, trailing commas (es5), LF line endings
